@@ -1,0 +1,15 @@
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\bin\Debug\net6.0\MarvelChampionsApplication.deps.json
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\bin\Debug\net6.0\MarvelChampionsApplication.dll
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\bin\Debug\net6.0\MarvelChampionsApplication.pdb
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\bin\Debug\net6.0\MarvelChampionsDomain.dll
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\bin\Debug\net6.0\MarvelChampionsDomain.pdb
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\obj\Debug\net6.0\MarvelChampionsApplication.csproj.AssemblyReference.cache
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\obj\Debug\net6.0\MarvelChampionsApplication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\obj\Debug\net6.0\MarvelChampionsApplication.AssemblyInfoInputs.cache
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\obj\Debug\net6.0\MarvelChampionsApplication.AssemblyInfo.cs
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\obj\Debug\net6.0\MarvelChampionsApplication.csproj.CoreCompileInputs.cache
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\obj\Debug\net6.0\MarvelChampionsApplication.csproj.CopyComplete
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\obj\Debug\net6.0\MarvelChampionsApplication.dll
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\obj\Debug\net6.0\refint\MarvelChampionsApplication.dll
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\obj\Debug\net6.0\MarvelChampionsApplication.pdb
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsApplication\obj\Debug\net6.0\ref\MarvelChampionsApplication.dll

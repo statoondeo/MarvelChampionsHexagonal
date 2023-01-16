@@ -1,0 +1,45 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MarvelChampionsApplication/1.0.0": {
+        "dependencies": {
+          "MarvelChampionsDomain": "1.0.0",
+          "SonarAnalyzer.CSharp": "8.51.0.59060"
+        },
+        "runtime": {
+          "MarvelChampionsApplication.dll": {}
+        }
+      },
+      "SonarAnalyzer.CSharp/8.51.0.59060": {},
+      "MarvelChampionsDomain/1.0.0": {
+        "runtime": {
+          "MarvelChampionsDomain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MarvelChampionsApplication/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SonarAnalyzer.CSharp/8.51.0.59060": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Wh4sFITqQhNKiRad5poG5oe+PvnQ5HqnZ9ddJ57HrNOaw9LtRPejEo7EEGXMSRAHFd6WXhF/ubIcBDoG5gLaAA==",
+      "path": "sonaranalyzer.csharp/8.51.0.59060",
+      "hashPath": "sonaranalyzer.csharp.8.51.0.59060.nupkg.sha512"
+    },
+    "MarvelChampionsDomain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

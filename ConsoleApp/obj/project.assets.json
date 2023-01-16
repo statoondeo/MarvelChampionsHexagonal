@@ -1,0 +1,132 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "MarvelChampionsApplication/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "MarvelChampionsDomain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MarvelChampionsApplication.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MarvelChampionsApplication.dll": {}
+        }
+      },
+      "MarvelChampionsDomain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/MarvelChampionsDomain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MarvelChampionsDomain.dll": {}
+        }
+      },
+      "MarvelChampionsInfrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "MarvelChampionsApplication": "1.0.0",
+          "MarvelChampionsDomain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MarvelChampionsInfrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MarvelChampionsInfrastructure.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MarvelChampionsApplication/1.0.0": {
+      "type": "project",
+      "path": "../MarvelChampionsApplication/MarvelChampionsApplication.csproj",
+      "msbuildProject": "../MarvelChampionsApplication/MarvelChampionsApplication.csproj"
+    },
+    "MarvelChampionsDomain/1.0.0": {
+      "type": "project",
+      "path": "../MarvelChampionsDomain/MarvelChampionsDomain.csproj",
+      "msbuildProject": "../MarvelChampionsDomain/MarvelChampionsDomain.csproj"
+    },
+    "MarvelChampionsInfrastructure/1.0.0": {
+      "type": "project",
+      "path": "../MarvelChampionsInfrastructure/MarvelChampionsInfrastructure.csproj",
+      "msbuildProject": "../MarvelChampionsInfrastructure/MarvelChampionsInfrastructure.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "MarvelChampionsDomain >= 1.0.0",
+      "MarvelChampionsInfrastructure >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\rapha\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\ConsoleApp\\ConsoleApp.csproj",
+      "projectName": "ConsoleApp",
+      "projectPath": "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\ConsoleApp\\ConsoleApp.csproj",
+      "packagesPath": "C:\\Users\\rapha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\ConsoleApp\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\rapha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Users\\rapha\\Downloads": {},
+        "https://www.nuget.org/api/v2/": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsDomain\\MarvelChampionsDomain.csproj": {
+              "projectPath": "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsDomain\\MarvelChampionsDomain.csproj"
+            },
+            "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsInfrastructure\\MarvelChampionsInfrastructure.csproj": {
+              "projectPath": "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsInfrastructure\\MarvelChampionsInfrastructure.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

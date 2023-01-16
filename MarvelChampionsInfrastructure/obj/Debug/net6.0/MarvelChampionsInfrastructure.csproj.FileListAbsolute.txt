@@ -1,0 +1,17 @@
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\obj\Debug\net6.0\MarvelChampionsInfrastructure.csproj.AssemblyReference.cache
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\obj\Debug\net6.0\MarvelChampionsInfrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\obj\Debug\net6.0\MarvelChampionsInfrastructure.AssemblyInfoInputs.cache
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\obj\Debug\net6.0\MarvelChampionsInfrastructure.AssemblyInfo.cs
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\obj\Debug\net6.0\MarvelChampionsInfrastructure.csproj.CoreCompileInputs.cache
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\bin\Debug\net6.0\MarvelChampionsInfrastructure.deps.json
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\bin\Debug\net6.0\MarvelChampionsInfrastructure.dll
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\bin\Debug\net6.0\MarvelChampionsInfrastructure.pdb
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\bin\Debug\net6.0\MarvelChampionsDomain.dll
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\bin\Debug\net6.0\MarvelChampionsDomain.pdb
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\obj\Debug\net6.0\MarvelChampionsInfrastructure.csproj.CopyComplete
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\obj\Debug\net6.0\MarvelChampionsInfrastructure.dll
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\obj\Debug\net6.0\refint\MarvelChampionsInfrastructure.dll
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\obj\Debug\net6.0\MarvelChampionsInfrastructure.pdb
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\obj\Debug\net6.0\ref\MarvelChampionsInfrastructure.dll
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\bin\Debug\net6.0\MarvelChampionsApplication.dll
+C:\Users\rapha\source\repos\MarvelChampionsHexagonal\MarvelChampionsInfrastructure\bin\Debug\net6.0\MarvelChampionsApplication.pdb

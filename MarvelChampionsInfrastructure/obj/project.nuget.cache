@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "zurDwaqEBYJq8uC/yqfa+p+B0jAvQ2hWQT7WaiXtdKYX6W+Q7KGU/tWgH+FCstKgfi+t31cco0rwkWji1oGU2A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsInfrastructure\\MarvelChampionsInfrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rapha\\.nuget\\packages\\sonaranalyzer.csharp\\8.51.0.59060\\sonaranalyzer.csharp.8.51.0.59060.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,64 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ConsoleApp/1.0.0": {
+        "dependencies": {
+          "MarvelChampionsDomain": "1.0.0",
+          "MarvelChampionsInfrastructure": "1.0.0"
+        },
+        "runtime": {
+          "ConsoleApp.dll": {}
+        }
+      },
+      "MarvelChampionsApplication/1.0.0": {
+        "dependencies": {
+          "MarvelChampionsDomain": "1.0.0"
+        },
+        "runtime": {
+          "MarvelChampionsApplication.dll": {}
+        }
+      },
+      "MarvelChampionsDomain/1.0.0": {
+        "runtime": {
+          "MarvelChampionsDomain.dll": {}
+        }
+      },
+      "MarvelChampionsInfrastructure/1.0.0": {
+        "dependencies": {
+          "MarvelChampionsApplication": "1.0.0",
+          "MarvelChampionsDomain": "1.0.0"
+        },
+        "runtime": {
+          "MarvelChampionsInfrastructure.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ConsoleApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MarvelChampionsApplication/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MarvelChampionsDomain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MarvelChampionsInfrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

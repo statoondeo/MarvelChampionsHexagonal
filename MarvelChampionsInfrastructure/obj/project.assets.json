@@ -1,0 +1,145 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "SonarAnalyzer.CSharp/8.51.0.59060": {
+        "type": "package"
+      },
+      "MarvelChampionsApplication/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "MarvelChampionsDomain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MarvelChampionsApplication.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MarvelChampionsApplication.dll": {}
+        }
+      },
+      "MarvelChampionsDomain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/MarvelChampionsDomain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MarvelChampionsDomain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SonarAnalyzer.CSharp/8.51.0.59060": {
+      "sha512": "Wh4sFITqQhNKiRad5poG5oe+PvnQ5HqnZ9ddJ57HrNOaw9LtRPejEo7EEGXMSRAHFd6WXhF/ubIcBDoG5gLaAA==",
+      "type": "package",
+      "path": "sonaranalyzer.csharp/8.51.0.59060",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/Google.Protobuf.dll",
+        "analyzers/SonarAnalyzer.CFG.dll",
+        "analyzers/SonarAnalyzer.CSharp.dll",
+        "analyzers/SonarAnalyzer.dll",
+        "images/sonarsource_64.png",
+        "license/THIRD-PARTY-NOTICES.txt",
+        "sonaranalyzer.csharp.8.51.0.59060.nupkg.sha512",
+        "sonaranalyzer.csharp.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "MarvelChampionsApplication/1.0.0": {
+      "type": "project",
+      "path": "../MarvelChampionsApplication/MarvelChampionsApplication.csproj",
+      "msbuildProject": "../MarvelChampionsApplication/MarvelChampionsApplication.csproj"
+    },
+    "MarvelChampionsDomain/1.0.0": {
+      "type": "project",
+      "path": "../MarvelChampionsDomain/MarvelChampionsDomain.csproj",
+      "msbuildProject": "../MarvelChampionsDomain/MarvelChampionsDomain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "MarvelChampionsApplication >= 1.0.0",
+      "MarvelChampionsDomain >= 1.0.0",
+      "SonarAnalyzer.CSharp >= 8.51.0.59060"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\rapha\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsInfrastructure\\MarvelChampionsInfrastructure.csproj",
+      "projectName": "MarvelChampionsInfrastructure",
+      "projectPath": "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsInfrastructure\\MarvelChampionsInfrastructure.csproj",
+      "packagesPath": "C:\\Users\\rapha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsInfrastructure\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\rapha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Users\\rapha\\Downloads": {},
+        "https://www.nuget.org/api/v2/": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsApplication\\MarvelChampionsApplication.csproj": {
+              "projectPath": "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsApplication\\MarvelChampionsApplication.csproj"
+            },
+            "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsDomain\\MarvelChampionsDomain.csproj": {
+              "projectPath": "C:\\Users\\rapha\\source\\repos\\MarvelChampionsHexagonal\\MarvelChampionsDomain\\MarvelChampionsDomain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "SonarAnalyzer.CSharp": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[8.51.0.59060, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
