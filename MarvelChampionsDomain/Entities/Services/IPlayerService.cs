@@ -5,11 +5,11 @@ namespace MarvelChampionsDomain.Entities.Services;
 
 public interface IPlayerService : IService
 {
-    IReadOnlyList<IPlayer> Players { get; }
-    IPlayer First { get; }
-    IPlayer Register(IPlayer player);
+    IReadOnlyList<IHeroPlayer> Players { get; }
+	IHeroPlayer First { get; }
+	IHeroPlayer Register(IHeroPlayer player);
     void SetFirst(int playerIndex);
-    void Unregister(IPlayer player);
+    void Unregister(IHeroPlayer player);
     void NextPlayerSetToFirst();
-    IPlayer GetById(EntityId id);
+	IHeroPlayer GetById(EntityId id);
 }

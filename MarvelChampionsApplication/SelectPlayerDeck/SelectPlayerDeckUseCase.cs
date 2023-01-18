@@ -1,4 +1,5 @@
-﻿using MarvelChampionsDomain.Entities.Cards;
+﻿using MarvelChampionsDomain.Entities;
+using MarvelChampionsDomain.Entities.Cards;
 using MarvelChampionsDomain.Entities.Commands;
 using MarvelChampionsDomain.Entities.Sets;
 using MarvelChampionsDomain.Enums;
@@ -8,32 +9,40 @@ namespace MarvelChampionsApplication.SelectPlayerDeck;
 
 public sealed class SelectPlayerDeckUseCase : IUseCase
 {
-    private readonly SelectPlayerDeckUseCaseInput Input;
-    public SelectPlayerDeckUseCase(SelectPlayerDeckUseCaseInput input)
-    {
-        ArgumentNullException.ThrowIfNull(input);
-        Input = input;
-    }
-    public void Execute()
-    {
-        ICardSet deck = new CardSet(false, string.Empty);
-		deck.Append(ServiceLocator.Instance.Get<ICardSetRepository>().GetById(Input.Player!.Identity!.CardSetId));
-		deck.Append(ServiceLocator.Instance.Get<ICardSetRepository>().GetById(Input.Deck!.Id));
-        List<ICard> cards = new List<ICard>();
-        deck.Cards.ForEach(collectibleCard =>
-        {
-            ICard card = new Card(
-                collectibleCard.Title!,
-                string.Empty, 
-                TypeEnum.None,
+	private readonly SelectPlayerDeckUseCaseInput Input;
+	public SelectPlayerDeckUseCase(SelectPlayerDeckUseCaseInput input)
+	{
+		ArgumentNullException.ThrowIfNull(input);
+		Input = input;
+	}
+	public void Execute()
+	{
+		List<CollectibleCardDto> deck = new();
+		// Ajout des cartes de l'identité
+		deck.AddRange(
+			ServiceLocator.Instance.Get<ICardSetRepository>()
+			.GetById(
+				ServiceLocator.Instance.Get<IHeroIdentityRepository>()
+				.GetById(Input.Player!.Identity!)
+				.CardSetId).Cards);
+		// Ajout des cartes du deck
+		deck.AddRange(ServiceLocator.Instance.Get<ICardSetRepository>().GetById(Input.Deck!.Id).Cards);
+		List<ICard> cards = new();
+		deck.ForEach(collectibleCard =>
+		{
+			ICard card = new Card(
+				collectibleCard.Id!,
+				collectibleCard.CardSet!,
+				collectibleCard.Title!,
+				string.Empty,
+				TypeEnum.None,
 				LocationEnum.None,
 				ClassificationEnum.None,
-                new NullCommand(),
+				new NullCommand(),
 				new NullCommand());
-			card.SetOwner(Input.Player!);
+			card.SetOwner(Input.Player!.Id);
 			cards.Add(card);
 		});
-		Input.Player!.Identity!.SetCard(cards[0]);
 		ServiceLocator.Instance.Get<ICardService>().RegisterRange(cards);
 	}
 }

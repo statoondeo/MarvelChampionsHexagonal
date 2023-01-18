@@ -1,12 +1,18 @@
-﻿using MarvelChampionsDomain.Entities.Identities;
+﻿using MarvelChampionsDomain.ValueObjects;
 
 namespace MarvelChampionsDomain.Entities.Players;
 
 public interface IPlayer : IEntity
 {
-	string Nickname { get; }
-	IIdentity? Identity { get; }
+	EntityId? Identity { get; }
 	int Life { get; }
-	void InitIdentity(IIdentity identity);
+	void InitIdentity(EntityId identity);
 	void InitLife();
+}
+public interface IHeroPlayer : IPlayer
+{
+	string Nickname { get; }
+}
+public interface IVillainPlayer : IPlayer
+{
 }

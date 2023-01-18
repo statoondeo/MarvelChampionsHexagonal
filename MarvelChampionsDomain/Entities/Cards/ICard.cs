@@ -1,12 +1,13 @@
 ﻿using MarvelChampionsDomain.Entities.Commands;
-using MarvelChampionsDomain.Entities.Players;
 using MarvelChampionsDomain.Enums;
+using MarvelChampionsDomain.ValueObjects;
 
 namespace MarvelChampionsDomain.Entities.Cards;
 
 public interface ICard : IEntity
 {
-	IPlayer? Owner { get; }
+	EntityId? Owner { get; }
+	EntityId? CardSet { get; }
 	string Title { get; }
 	string? SubTitle { get; }
 	TypeEnum Type { get; }
@@ -15,6 +16,6 @@ public interface ICard : IEntity
 	ICommand SetupCommand { get; }
 	ICommand WhenRevealedCommand { get; }
 
-	void SetOwner(IPlayer owner);
+	void SetOwner(EntityId owner);
 	void SetLocation(LocationEnum location);
 }

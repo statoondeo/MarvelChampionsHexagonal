@@ -8,5 +8,5 @@ public sealed class SelectPlayerIdentityUseCase : IUseCase
 		ArgumentNullException.ThrowIfNull(input);
 		Input = input;
 	}
-	public void Execute() => Input.Player!.InitIdentity(Input.Identity!);
+	public void Execute() => Input.Player!.InitIdentity(Input.Identity!.Id);
 }

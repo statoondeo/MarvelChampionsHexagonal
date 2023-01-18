@@ -24,9 +24,11 @@ public sealed class RegisterPlayerStrategy : IRegisterPlayerStrategy
 			new RegisterPlayerUseCase(new RegisterPlayerUseCaseInput()
 			{
 				Nickname = output.Nickname,
-			}).Execute(); 
-			output = new RegisterPlayerUseCaseInput();
-			output.Players = ServiceLocator.Instance.Get<IPlayerService>().Players.ToList();
+			}).Execute();
+			output = new RegisterPlayerUseCaseInput
+			{
+				Players = ServiceLocator.Instance.Get<IPlayerService>().Players.ToList()
+			};
 			Presenter.Present(output);
 		}
 	}

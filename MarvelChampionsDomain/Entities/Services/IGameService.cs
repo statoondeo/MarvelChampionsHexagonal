@@ -8,7 +8,9 @@ public interface IGameService : IService
 {
 	IRegisterPlayerStrategy RegisterPlayerStrategy { get; }
 	ISelectPlayerIdentityStrategy SelectPlayerIdentityStrategy { get; }
-	ISelectPlayerDeckStrategy SelectDeckStrategy { get; }
+	ISelectVillainIdentityStrategy SelectVillainIdentityStrategy { get; }
+	ISelectPlayerDeckStrategy SelectPlayerDeckStrategy { get; }
+	ISelectVillainDeckStrategy SelectVillainDeckStrategy { get; }
 	IChooseCardStrategy SelectCardStrategy { get; }
 	void Start();
 }

@@ -5,6 +5,6 @@ namespace MarvelChampionsApplication.SelectPlayerIdentity;
 
 public sealed class SelectPlayerIdentityUseCaseInput
 {
-	public IPlayer? Player { get; set; }
-	public IIdentity? Identity { get; set; }
+	public IHeroPlayer? Player { get; set; }
+	public IHeroIdentity? Identity { get; set; }
 }

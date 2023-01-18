@@ -1,10 +1,9 @@
-﻿using MarvelChampionsDomain.Entities;
+﻿using MarvelChampionsDomain.Entities.Identities;
 using MarvelChampionsDomain.Entities.Players;
 
-namespace MarvelChampionsDomain.Strategies
+namespace MarvelChampionsDomain.Strategies;
+
+public interface ISelectPlayerIdentityStrategy
 {
-	public interface ISelectPlayerIdentityStrategy
-	{
-		void SelectIdentityForPlayer(IPlayer player);
-	}
+	void SelectIdentityForPlayer(IHeroPlayer player, List<IHeroIdentity> identities);
 }

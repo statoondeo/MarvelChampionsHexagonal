@@ -2,6 +2,7 @@
 using MarvelChampionsApplication.SelectPlayerDeck;
 
 using MarvelChampionsDomain.Entities.Players;
+using MarvelChampionsDomain.Entities.Sets;
 using MarvelChampionsDomain.Strategies;
 
 namespace MarvelChampionsApplication.Strategies;
@@ -14,10 +15,10 @@ public sealed class SelectPlayerDeckStrategy : ISelectPlayerDeckStrategy
 		ArgumentNullException.ThrowIfNull(presenter);
 		Presenter = presenter;
 	}
-	public void SelectDeckForPlayer(IPlayer player)
+	public void SelectDeckForPlayer(IHeroPlayer player, List<ICardSet> cardSets)
 	{
 		// Affichage des decks pour sélection
-		ListDecksUseCase listUseCase = new(Presenter);
+		ListDecksUseCase listUseCase = new(cardSets, Presenter);
 		listUseCase.Execute();
 
 		// On associe le deck sélectionné au joueur

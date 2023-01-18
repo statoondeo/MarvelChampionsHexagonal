@@ -1,10 +1,13 @@
 ﻿using MarvelChampionsDomain.Entities.Commands;
 using MarvelChampionsDomain.Enums;
+using MarvelChampionsDomain.ValueObjects;
 
 namespace MarvelChampionsDomain.Entities.Cards;
 
 public sealed class CardBuilder
 {
+	private readonly EntityId Id;
+	private readonly EntityId CardSet;
 	private readonly string Title;
 	private string? SubTitle;
 	private readonly TypeEnum Type;
@@ -12,9 +15,10 @@ public sealed class CardBuilder
 	private readonly ClassificationEnum Classification;
 	private ICommand SetupCommand;
 	private ICommand WhenRevealedCommand;
-	public CardBuilder(string title, TypeEnum type, ClassificationEnum classification)
+	public CardBuilder(EntityId id, EntityId cardSet, string title, TypeEnum type, ClassificationEnum classification)
 	{
-		if (string.IsNullOrWhiteSpace(title)) throw new ArgumentNullException(nameof(title));
+		Id = id;
+		CardSet = cardSet;
 		Title = title;
 		Type = type;
 		Classification = classification;
@@ -45,5 +49,5 @@ public sealed class CardBuilder
 		WhenRevealedCommand = whenRevealedCommand;
 		return this;
 	}
-	public ICard Build() => new Card(Title, SubTitle, Type, Location, Classification, SetupCommand, WhenRevealedCommand);
+	public ICard Build() => new Card(Id, CardSet, Title, SubTitle, Type, Location, Classification, SetupCommand, WhenRevealedCommand);
 }

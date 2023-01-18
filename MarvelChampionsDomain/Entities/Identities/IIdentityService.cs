@@ -4,4 +4,5 @@ using MarvelChampionsDomain.ValueObjects;
 
 namespace MarvelChampionsDomain.Entities;
 
-public interface IIdentityRepository : IRepository<EntityId, IIdentity>, IService { }
+public interface IHeroIdentityRepository : IRepository<EntityId, IHeroIdentity>, IService { }
+public interface IVillainIdentityRepository : IRepository<EntityId, IVillainIdentity>, IService { }

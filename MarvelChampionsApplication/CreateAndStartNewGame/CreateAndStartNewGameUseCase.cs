@@ -22,7 +22,9 @@ public sealed class CreateAndStartNewGameUseCase : IUseCase
             new GameBuilder(
                 new RegisterPlayerStrategy(Input.RegisterPlayerPresenter!),
                 new SelectPlayerIdentityStrategy(Input.SelectPlayerIdentityPresenter!),
+                new SelectVillainIdentityStrategy(Input.SelectVillainIdentityPresenter!),
                 new SelectPlayerDeckStrategy(Input.SelectDeckPresenter!),
+                new SelectVillainDeckStrategy(Input.SelectDeckPresenter!),
                 Input.SelectCardStrategy!)
             .WithSetupCommand(
                 new CompositeCommandBuilder()

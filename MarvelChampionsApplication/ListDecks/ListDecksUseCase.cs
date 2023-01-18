@@ -1,24 +1,22 @@
-﻿using MarvelChampionsDomain.Entities;
-using MarvelChampionsDomain.Entities.Sets;
-using MarvelChampionsDomain.Tools;
+﻿using MarvelChampionsDomain.Entities.Sets;
 
 namespace MarvelChampionsApplication.ListAvailableDecks;
 
 public sealed class ListDecksUseCase : IUseCase
 {
-    private readonly IUseCasePresenter<ListDecksUseCaseOutput> Presenter;
-    public ListDecksUseCaseOutput? Output { get; private set; }
-    public ListDecksUseCase(IUseCasePresenter<ListDecksUseCaseOutput> presenter)
+	private readonly List<ICardSet> CardSets;
+	private readonly IUseCasePresenter<ListDecksUseCaseOutput> Presenter;
+	public ListDecksUseCaseOutput? Output { get; private set; }
+    public ListDecksUseCase(List<ICardSet> cardSets, IUseCasePresenter<ListDecksUseCaseOutput> presenter)
     {
-        ArgumentNullException.ThrowIfNull(presenter);
-        Presenter = presenter;
+		ArgumentNullException.ThrowIfNull(cardSets);
+		ArgumentNullException.ThrowIfNull(presenter);
+		CardSets = cardSets;
+		Presenter = presenter;
     }
     public void Execute()
     {
-		Output = new ListDecksUseCaseOutput () 
-        { 
-            Decks = ServiceLocator.Instance.Get<ICardSetRepository>().GetAll().Where(deck => !deck.Identity).ToList()
-        };
+		Output = new ListDecksUseCaseOutput () { Decks = CardSets };
         Presenter.Present(Output);
     }
 }

@@ -11,22 +11,31 @@ public sealed class GameBuilder
 	private ICommand? SetupCommand;
 	private readonly IRegisterPlayerStrategy RegisterPlayerStrategy;
 	private readonly ISelectPlayerIdentityStrategy SelectPlayerIdentityStrategy;
-	private readonly ISelectPlayerDeckStrategy SelectDeckStrategy;
+	private readonly ISelectVillainIdentityStrategy SelectVillainIdentityStrategy;
+	private readonly ISelectPlayerDeckStrategy SelectPlayerDeckStrategy;
+	private readonly ISelectVillainDeckStrategy SelectVillainDeckStrategy;
 	private readonly IChooseCardStrategy SelectCardStrategy;
 
 	public GameBuilder(
 		IRegisterPlayerStrategy registerPlayerStrategy,
-		ISelectPlayerIdentityStrategy selectPlayerIdentityStrategy, 
-		ISelectPlayerDeckStrategy selectDeckStrategy, 
+		ISelectPlayerIdentityStrategy selectPlayerIdentityStrategy,
+		ISelectVillainIdentityStrategy selectVillainIdentityStrategy,
+		ISelectPlayerDeckStrategy selectPlayerDeckStrategy,
+		ISelectVillainDeckStrategy selectVillainDeckStrategy,
 		IChooseCardStrategy selectCardStrategy)
 	{
 		ArgumentNullException.ThrowIfNull(registerPlayerStrategy);
 		ArgumentNullException.ThrowIfNull(selectPlayerIdentityStrategy);
-		ArgumentNullException.ThrowIfNull(selectDeckStrategy);
+		ArgumentNullException.ThrowIfNull(selectVillainIdentityStrategy);
+		ArgumentNullException.ThrowIfNull(selectPlayerDeckStrategy);
+		ArgumentNullException.ThrowIfNull(selectVillainDeckStrategy);
 		ArgumentNullException.ThrowIfNull(selectCardStrategy);
+
 		RegisterPlayerStrategy = registerPlayerStrategy;
 		SelectPlayerIdentityStrategy = selectPlayerIdentityStrategy;
-		SelectDeckStrategy = selectDeckStrategy;
+		SelectVillainIdentityStrategy = selectVillainIdentityStrategy;
+		SelectPlayerDeckStrategy = selectPlayerDeckStrategy;
+		SelectVillainDeckStrategy = selectVillainDeckStrategy;
 		SelectCardStrategy = selectCardStrategy;
 	}
 	public GameBuilder WithSetupCommand(ICommand setupCommand)
@@ -37,6 +46,8 @@ public sealed class GameBuilder
 	public Game Build() => new(SetupCommand!, 
 									RegisterPlayerStrategy, 
 									SelectPlayerIdentityStrategy, 
-									SelectDeckStrategy, 
+									SelectPlayerDeckStrategy,
+									SelectVillainIdentityStrategy,
+									SelectVillainDeckStrategy,
 									SelectCardStrategy);
 }

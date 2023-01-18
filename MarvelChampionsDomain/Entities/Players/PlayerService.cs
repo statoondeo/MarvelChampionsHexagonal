@@ -6,23 +6,23 @@ namespace MarvelChampionsDomain.Entities.Players;
 
 public sealed class PlayerService : IPlayerService
 {
-	private readonly ISet<IPlayer> PlayersAtlas;
+	private readonly ISet<IHeroPlayer> PlayersAtlas;
 	private int FirstPlayerIndex;
-	public IReadOnlyList<IPlayer> Players => PlayersAtlas.ToList().AsReadOnly();
-	public IPlayer First => PlayersAtlas.Skip(FirstPlayerIndex % PlayersAtlas.Count).First();
-	public PlayerService() => PlayersAtlas = new HashSet<IPlayer>();
+	public IReadOnlyList<IHeroPlayer> Players => PlayersAtlas.ToList().AsReadOnly();
+	public IHeroPlayer First => PlayersAtlas.Skip(FirstPlayerIndex % PlayersAtlas.Count).First();
+	public PlayerService() => PlayersAtlas = new HashSet<IHeroPlayer>();
 	public void NextPlayerSetToFirst()
 	{
 		FirstPlayerIndex = (FirstPlayerIndex + 1) % PlayersAtlas.Count;
 		Logger.Log($"PlayerService.NextPlayerSetToFirst -> {First}");
 	}
-	public IPlayer Register(IPlayer player)
+	public IHeroPlayer Register(IHeroPlayer player)
 	{
 		PlayersAtlas.Add(player ?? throw new ArgumentNullException(nameof(player)));
 		Logger.Log($"PlayerService.Register -> {player}");
 		return player;
 	}
-	public void Unregister(IPlayer player)
+	public void Unregister(IHeroPlayer player)
 	{
 		PlayersAtlas.Remove(player ?? throw new ArgumentNullException(nameof(player)));
 		Logger.Log($"PlayerService.Unregister -> {First}");
@@ -32,5 +32,5 @@ public sealed class PlayerService : IPlayerService
 		FirstPlayerIndex = playerIndex % PlayersAtlas.Count;
 		Logger.Log($"PlayerService.SetFirst -> {First}");
 	}
-	public IPlayer GetById(EntityId id) => PlayersAtlas.Single(player => player.Id.Equals(id));
+	public IHeroPlayer GetById(EntityId id) => PlayersAtlas.Single(player => player.Id.Equals(id));
 }

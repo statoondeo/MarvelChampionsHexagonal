@@ -5,7 +5,7 @@ using MarvelChampionsInfrastructure.Data;
 
 namespace MarvelChampionsInfrastructure;
 
-public sealed class MemoryCardSetRepository : BaseRepository<EntityId, ICardSet>, ICardSetRepository
+public sealed class MemoryCardSetRepository : BaseMemoryRepository<EntityId, ICardSet>, ICardSetRepository
 {
 	public MemoryCardSetRepository() => Load();
 	private void Load()
@@ -31,5 +31,26 @@ public sealed class MemoryCardSetRepository : BaseRepository<EntityId, ICardSet>
 		Create(BlackPantherDeckDtoFactory.CardSetId, BlackPantherDeckDtoFactory.Create());
 		Create(IronManDeckDtoFactory.CardSetId, IronManDeckDtoFactory.Create());
 		Create(SpidermanDeckDtoFactory.CardSetId, SpidermanDeckDtoFactory.Create());
+
+		Create(RhinoDeckDtoFactory.StandardIdentitySet, RhinoDeckDtoFactory.CreateStandard());
+		Create(RhinoDeckDtoFactory.ExpertIdentitySet, RhinoDeckDtoFactory.CreateExpert());
+		Create(RhinoDeckDtoFactory.SchemeCardSetId, RhinoDeckDtoFactory.CreateScheme());
+		Create(RhinoDeckDtoFactory.CardSetId, RhinoDeckDtoFactory.CreateDeck());
+
+		Create(KlawDeckDtoFactory.StandardIdentitySet, KlawDeckDtoFactory.CreateStandard());
+		Create(KlawDeckDtoFactory.ExpertIdentitySet, KlawDeckDtoFactory.CreateExpert());
+		Create(KlawDeckDtoFactory.SchemeCardSetId, KlawDeckDtoFactory.CreateScheme());
+		Create(KlawDeckDtoFactory.CardSetId, KlawDeckDtoFactory.CreateDeck());
+
+		Create(UltronDeckDtoFactory.StandardIdentitySet, UltronDeckDtoFactory.CreateStandard());
+		Create(UltronDeckDtoFactory.ExpertIdentitySet, UltronDeckDtoFactory.CreateExpert());
+		Create(UltronDeckDtoFactory.SchemeCardSetId, UltronDeckDtoFactory.CreateScheme());
+		Create(UltronDeckDtoFactory.CardSetId, UltronDeckDtoFactory.CreateDeck());
+
+		Create(BombScareDeckDtoFactory.CardSetId, BombScareDeckDtoFactory.Create());
+		Create(TheMastersOfEvilDeckDtoFactory.CardSetId, TheMastersOfEvilDeckDtoFactory.Create());
+		Create(UnderAttackDeckDtoFactory.CardSetId, UnderAttackDeckDtoFactory.Create());
+		Create(LegionsOfHydraDeckDtoFactory.CardSetId, LegionsOfHydraDeckDtoFactory.Create());
+		Create(TheDoomsdayChairDeckDtoFactory.CardSetId, TheDoomsdayChairDeckDtoFactory.Create());
 	}
 }

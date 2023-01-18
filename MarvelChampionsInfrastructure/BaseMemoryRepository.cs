@@ -2,10 +2,10 @@
 
 namespace MarvelChampionsInfrastructure;
 
-public abstract class BaseRepository<T, U> : IRepository<T, U> where T : notnull
+public abstract class BaseMemoryRepository<T, U> : IRepository<T, U> where T : notnull
 {
 	protected readonly IDictionary<T, U> Atlas;
-	protected BaseRepository() => Atlas = new Dictionary<T, U>();
+	protected BaseMemoryRepository() => Atlas = new Dictionary<T, U>();
 	public void Create(T key, U item)
 	{
 		ArgumentNullException.ThrowIfNull(key);

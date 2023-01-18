@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 
 using MarvelChampionsDomain.Tools;
+using MarvelChampionsDomain.ValueObjects;
 
 namespace MarvelChampionsDomain.Entities.Cards;
 
@@ -28,5 +29,5 @@ public sealed class CardService : ICardService
 	{
 		return CardsAtlas.Where(predicate).ToList().AsReadOnly();
 	}
-
+	public ICard GetCard(EntityId id) => CardsAtlas.Single(card => card.Id == id);
 }

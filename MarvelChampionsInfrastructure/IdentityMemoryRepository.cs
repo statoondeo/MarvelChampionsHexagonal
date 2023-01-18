@@ -5,46 +5,55 @@ using MarvelChampionsDomain.ValueObjects;
 using MarvelChampionsInfrastructure.Data;
 
 namespace MarvelChampionsInfrastructure;
-
-public sealed class IdentityMemoryRepository : BaseRepository<EntityId, IIdentity>, IIdentityRepository
+public sealed class HeroIdentityMemoryRepository : BaseMemoryRepository<EntityId, IHeroIdentity>, IHeroIdentityRepository
 {
-	public IdentityMemoryRepository() => Load();
+	public HeroIdentityMemoryRepository() => Load();
 	private void Load()
 	{
 		Create(
 			CaptainMarvelDeckDtoFactory.IdentityId,
-			 new Identity(
-				 CaptainMarvelDeckDtoFactory.IdentityId,
-				 CaptainMarvelDeckDtoFactory.CardSetId,
-				   "Captain Marvel",
-					 12));
+			new HeroIdentity(
+				CaptainMarvelDeckDtoFactory.IdentityId,
+				CaptainMarvelDeckDtoFactory.CardSetId,
+				CaptainMarvelDeckDtoFactory.NemesisCardSetId,
+				CaptainMarvelDeckDtoFactory.CardId,
+				"Captain Marvel",
+				12));
 		Create(
 			MissHulkDeckDtoFactory.IdentityId,
-			new Identity(
+			new HeroIdentity(
 				MissHulkDeckDtoFactory.IdentityId,
 				MissHulkDeckDtoFactory.CardSetId,
+				MissHulkDeckDtoFactory.NemesisCardSetId,
+				MissHulkDeckDtoFactory.CardId,
 				"Miss Hulk",
-				  14));
+				14));
 		Create(
 			SpidermanDeckDtoFactory.IdentityId,
-			 new Identity(
-				 SpidermanDeckDtoFactory.IdentityId,
-				 SpidermanDeckDtoFactory.CardSetId,
-				   "Spiderman",
-					10));
+			new HeroIdentity(
+				SpidermanDeckDtoFactory.IdentityId,
+				SpidermanDeckDtoFactory.CardSetId,
+				SpidermanDeckDtoFactory.NemesisCardSetId,
+				SpidermanDeckDtoFactory.CardId,
+				"Spiderman",
+				10));
 		Create(
 			IronManDeckDtoFactory.IdentityId,
-			   new Identity(
-				 IronManDeckDtoFactory.IdentityId,
-				 IronManDeckDtoFactory.CardSetId,
-					 "Iron Man",
-					   9));
+			new HeroIdentity(
+				IronManDeckDtoFactory.IdentityId,
+				IronManDeckDtoFactory.CardSetId,
+				IronManDeckDtoFactory.NemesisCardSetId,
+				IronManDeckDtoFactory.CardId,
+				"Iron Man",
+				9));
 		Create(
 			BlackPantherDeckDtoFactory.IdentityId,
-			new Identity(
+			new HeroIdentity(
 				BlackPantherDeckDtoFactory.IdentityId,
 				BlackPantherDeckDtoFactory.CardSetId,
+				BlackPantherDeckDtoFactory.NemesisCardSetId,
+				BlackPantherDeckDtoFactory.CardId,
 				"Black Panther",
-				  11));
+				11));
 	}
 }

@@ -5,13 +5,16 @@ namespace MarvelChampionsDomain.Entities.Sets;
 public sealed class CardSet : BaseEntity, ICardSet
 {
 	public bool Identity { get; }
+	public bool Encounter { get; }
 	public string Description { get; }
 	public List<CollectibleCardDto> Cards { get; }
-	public CardSet(bool identity, string description) : this(identity, description, new List<CollectibleCardDto>()) { }
-	public CardSet(bool identity, string description, List<CollectibleCardDto> cards) : base(EntityId.Create())
+	public CardSet(bool identity, bool encounter, string description) 
+		: this(identity, encounter, description, new List<CollectibleCardDto>()) { }
+	public CardSet(bool identity, bool encounter, string description, List<CollectibleCardDto> cards) : base(EntityId.Create())
 	{
 		ArgumentNullException.ThrowIfNull(cards);
 		Identity = identity;
+		Encounter = encounter;
 		Description = description;
 		Cards = cards;
 	}

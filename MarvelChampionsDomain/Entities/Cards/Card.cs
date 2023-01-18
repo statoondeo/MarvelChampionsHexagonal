@@ -9,7 +9,8 @@ namespace MarvelChampionsDomain.Entities.Cards;
 
 public class Card : BaseEntity, ICard
 {
-	public IPlayer? Owner { get; private set; }
+	public EntityId? Owner { get; private set; }
+	public EntityId CardSet { get; private set; }
 	public string Title { get; }
 	public string? SubTitle { get; }
 	public TypeEnum Type { get; private set; }
@@ -18,21 +19,25 @@ public class Card : BaseEntity, ICard
 	public ICommand SetupCommand { get; private set; }
 	public ICommand WhenRevealedCommand { get; private set; }
 	public Card(
-		string title, 
+		EntityId id,
+		EntityId cardSet,
+		string title,
 		string? subTitle, 
 		TypeEnum type, 
 		LocationEnum location, 
 		ClassificationEnum classification,
 		ICommand setupCommand,
 		ICommand whenRevealedCommand) 
-		: base(EntityId.Create())
+		: base(id)
     {
+		ArgumentNullException.ThrowIfNull(cardSet);
 		ArgumentNullException.ThrowIfNull(type);
 		ArgumentNullException.ThrowIfNull(location);
 		ArgumentNullException.ThrowIfNull(classification);
 		ArgumentNullException.ThrowIfNull(setupCommand);
 		ArgumentNullException.ThrowIfNull(whenRevealedCommand);
 
+		CardSet = cardSet;
 		Title = title;
         SubTitle = subTitle;
 		Type = type;
@@ -41,9 +46,9 @@ public class Card : BaseEntity, ICard
 		SetupCommand = setupCommand;
 		WhenRevealedCommand = whenRevealedCommand;
 	}
-	public void SetOwner(IPlayer owner)
+	public void SetOwner(EntityId owner)
 	{
-		ArgumentNullException.ThrowIfNull(nameof(owner));
+		ArgumentNullException.ThrowIfNull(owner);
 		Owner = owner;
 		Logger.Log($"Card.SetOwner -> {this}");
 	}
