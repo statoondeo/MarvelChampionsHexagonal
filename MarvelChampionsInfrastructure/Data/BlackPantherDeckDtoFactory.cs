@@ -9,7 +9,7 @@ public static class BlackPantherDeckDtoFactory
 	public static readonly EntityId CardId = EntityId.Create(new Guid("38c90b39-4784-48e2-ac88-e96d9e96b115"));
 	public static readonly EntityId CardSetId = EntityId.Create(new Guid("630b1ad8-92e6-47fe-a968-ce28c649f3e0"));
 	public static readonly EntityId NemesisCardSetId = EntityId.Create(new Guid("f97cf80f-5625-4410-b645-be4f203e2e99"));
-	public static ICardSet Create() => new CardSet(true, false, "Black Panther", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId,true, false, false, "Black Panther", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = CardId, CardSet = CardSetId, Title = "Black Panther" },
 			new CollectibleCardDto() { Id = EntityId.Create("be305cc3-0ce0-4c92-bb25-eb41892ee43a"), CardSet = CardSetId, Title = "Shuri" },

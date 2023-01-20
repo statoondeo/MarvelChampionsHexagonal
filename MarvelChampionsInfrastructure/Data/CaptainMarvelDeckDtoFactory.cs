@@ -9,7 +9,7 @@ public static class CaptainMarvelDeckDtoFactory
 	public static readonly EntityId CardId = EntityId.Create(new Guid("51fb2601-3ab1-4947-80f1-2879beb58426"));
 	public static readonly EntityId CardSetId = EntityId.Create(new Guid("27d95ba5-5107-4fc0-863f-742f6328f703"));
 	public static readonly EntityId NemesisCardSetId = EntityId.Create(new Guid("3b0375a0-97ea-407b-93f2-ee0b2ebbcede"));
-	public static ICardSet Create() => new CardSet(true, false, "Captain Marvel", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId, true, false, false, "Captain Marvel", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = CardId, CardSet = CardSetId, Title = "Captain Marvel" },
 			new CollectibleCardDto() { Id = EntityId.Create("4d17afb3-28d2-4425-95ce-2a12f09e8209"), CardSet = CardSetId, Title = "Spider-Woman" },

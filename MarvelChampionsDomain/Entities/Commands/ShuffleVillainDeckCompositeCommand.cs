@@ -5,5 +5,5 @@ namespace MarvelChampionsDomain.Entities.Commands;
 
 public sealed class ShuffleVillainDeckCompositeCommand : ICommand
 {
-	public void Execute() => new ShufflePlayerDeckCommand(ServiceLocator.Instance.Get<IVillainService>().Villain!).Execute();
+	public void Execute() => new ShuffleDeckCommand(ServiceLocator.Instance.Get<IVillainService>().Villain!.Id).Execute();
 }

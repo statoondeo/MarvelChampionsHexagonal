@@ -5,6 +5,6 @@ namespace MarvelChampionsApplication.SelectPlayerDeck;
 
 public sealed class SelectPlayerDeckUseCaseInput
 {
-	public IPlayer? Player { get; set; }
+	public IHeroPlayer? Player { get; set; }
 	public ICardSet? Deck { get; set; }
 }

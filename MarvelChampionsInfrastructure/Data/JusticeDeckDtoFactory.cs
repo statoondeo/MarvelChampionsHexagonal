@@ -6,7 +6,7 @@ namespace MarvelChampionsInfrastructure.Data;
 public static class JusticeDeckDtoFactory
 {
 	public static readonly EntityId CardSetId = EntityId.Create(new Guid("8c52ff7f-9bdf-4a25-bad4-7685ff89b1cd"));
-	public static ICardSet Create() => new CardSet(false, false, "Justice from CoreSet", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId, false, false, false, "Justice from CoreSet", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = EntityId.Create("e57971f5-766a-4d76-b126-5a61b5117146"), CardSet = CardSetId, Title = "Daredevil" },
 			new CollectibleCardDto() { Id = EntityId.Create("93d18d5c-164a-47e2-ad7b-a8c83720c92b"), CardSet = CardSetId, Title = "Jessica Jones" },

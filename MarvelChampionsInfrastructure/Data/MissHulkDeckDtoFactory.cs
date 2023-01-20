@@ -9,7 +9,7 @@ public static class MissHulkDeckDtoFactory
 	public static readonly EntityId CardId = EntityId.Create(new Guid("5569c7f2-964d-4598-80eb-f4e098beac4d"));
 	public static readonly EntityId CardSetId = EntityId.Create(new Guid("085c8c14-fbfd-4661-b081-7689240c09b6"));
 	public static readonly EntityId NemesisCardSetId = EntityId.Create(new Guid("8c8a7609-55dd-45d6-b709-92967e1605af"));
-	public static ICardSet Create() => new CardSet(true, false, "Miss Hulk", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId, true, false, false, "Miss Hulk", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = CardId, CardSet = CardSetId, Title = "Miss Hulk" },
 			new CollectibleCardDto() { Id = EntityId.Create("cebefc07-5f4b-434c-ab80-4ca990d52c1d"), CardSet = CardSetId, Title = "Hellcat" },

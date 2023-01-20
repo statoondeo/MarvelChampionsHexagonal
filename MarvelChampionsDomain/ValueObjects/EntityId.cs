@@ -8,7 +8,8 @@ public sealed class EntityId : BaseValueObject
     {
         yield return Value;
     }
-    public override string ToString() => $"{Convert.ToBase64String(Value.ToByteArray())}";
+	public override string ToString() => $"{Value}";
+	//public override string ToString() => $"{Convert.ToBase64String(Value.ToByteArray())}";
 	// Factory methods
 	public static EntityId Create() => Create(Guid.NewGuid());
 	public static EntityId Create(Guid value) => new(value);

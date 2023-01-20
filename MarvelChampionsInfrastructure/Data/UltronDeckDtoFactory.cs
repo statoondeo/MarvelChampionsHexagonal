@@ -5,6 +5,9 @@ namespace MarvelChampionsInfrastructure.Data;
 
 public static class UltronDeckDtoFactory
 {
+	public static readonly EntityId StandardId = EntityId.Create("42543222-4295-49ae-a85e-3b4a363257fc");
+	public static readonly EntityId ExpertId = EntityId.Create("aad9a555-da60-4153-8ae5-2e40a30d2149");
+
 	public static readonly EntityId IdentityId1 = EntityId.Create("0533b9fd-fa57-454d-8a49-91c571c3c1f4");
 	public static readonly EntityId IdentityId2 = EntityId.Create("51f07ae9-1b52-4a68-98c7-c0693c9cfc09");
 	public static readonly EntityId IdentityId3 = EntityId.Create("2a45d8a5-df0b-42af-a306-f63954ee98a1");
@@ -13,17 +16,17 @@ public static class UltronDeckDtoFactory
 	public static readonly EntityId ExpertIdentitySet = EntityId.Create("cc7c0f06-cdde-4eac-aec2-edd776bedd10");
 	public static readonly EntityId CardSetId = EntityId.Create("40ce5abc-6e2e-4e23-8734-04acbd46f16b");
 	public static readonly EntityId SchemeCardSetId = EntityId.Create("d72e2882-3561-4904-81f6-92b3ae33ed6e");
-	public static ICardSet CreateStandard() => new CardSet(true, true, "Ultron Standard", new List<CollectibleCardDto>()
+	public static ICardSet CreateStandard() => new CardSet(StandardIdentitySet, true, true, false, "Ultron Standard", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = IdentityId1, CardSet = CardSetId, Title = "Ultron 1" },
 			new CollectibleCardDto() { Id = IdentityId2, CardSet = CardSetId, Title = "Ultron 2" },
 		});
-	public static ICardSet CreateExpert() => new CardSet(true, true, "Ultron Expert", new List<CollectibleCardDto>()
+	public static ICardSet CreateExpert() => new CardSet(ExpertIdentitySet, true, true, false, "Ultron Expert", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = IdentityId2, CardSet = CardSetId, Title = "Ultron 2" },
 			new CollectibleCardDto() { Id = IdentityId3, CardSet = CardSetId, Title = "Ultron 3" },
 	});
-	public static ICardSet CreateDeck() => new CardSet(true, true, "Ultron Deck", new List<CollectibleCardDto>()
+	public static ICardSet CreateDeck() => new CardSet(CardSetId,true, true, false, "Ultron Deck", new List<CollectibleCardDto>()
 		{           
 			new CollectibleCardDto() { Id = EntityId.Create("e1570fdb-7b23-4b29-86a3-4357f9a3b953"), CardSet = CardSetId, Title = "Ultron Drones" },
 			new CollectibleCardDto() { Id = EntityId.Create("739616e9-548d-45ff-870d-a853b90feea7"), CardSet = CardSetId, Title = "Program Transmitter" },
@@ -45,7 +48,7 @@ public static class UltronDeckDtoFactory
 			new CollectibleCardDto() { Id = EntityId.Create("8fa19386-45b8-46ec-b03f-151522874beb"), CardSet = CardSetId, Title = "Invasive AI" },
 			new CollectibleCardDto() { Id = EntityId.Create("033b3597-f2aa-4270-a5cd-3820272b990c"), CardSet = CardSetId, Title = "Ultron's Imperative" },
 		});
-	public static ICardSet CreateScheme() => new CardSet(true, true, "Ultron Scheme", new List<CollectibleCardDto>()
+	public static ICardSet CreateScheme() => new CardSet(SchemeCardSetId, true, true, false, "Ultron Scheme", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = EntityId.Create("dd2b2678-0a4a-4aaf-9d6e-180a4a6b0c10"), CardSet = SchemeCardSetId, Title = "The Crimson Cowl - 1A" },
 			new CollectibleCardDto() { Id = EntityId.Create("ef31f50d-750d-499a-9241-995973195fd4"), CardSet = SchemeCardSetId, Title = "The Crimson Cowl - 1B" },

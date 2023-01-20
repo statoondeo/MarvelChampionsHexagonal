@@ -12,8 +12,9 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 	private void Load()
 	{
 		Create(
-			RhinoDeckDtoFactory.IdentityId1,
+			RhinoDeckDtoFactory.StandardId,
 			new VillainIdentity(
+				RhinoDeckDtoFactory.StandardId,
 				RhinoDeckDtoFactory.CardSetId,
 				RhinoDeckDtoFactory.StandardIdentitySet,
 				RhinoDeckDtoFactory.SchemeCardSetId,
@@ -21,8 +22,9 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 				"Rhino Standard",
 				14));
 		Create(
-			RhinoDeckDtoFactory.IdentityId2,
+			RhinoDeckDtoFactory.ExpertId,
 			new VillainIdentity(
+				RhinoDeckDtoFactory.ExpertId,
 				RhinoDeckDtoFactory.CardSetId,
 				RhinoDeckDtoFactory.ExpertIdentitySet,
 				RhinoDeckDtoFactory.SchemeCardSetId,
@@ -30,8 +32,9 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 				"Rhino Expert",
 				15));
 		Create(
-			KlawDeckDtoFactory.IdentityId1,
+			KlawDeckDtoFactory.StandardId,
 			new VillainIdentity(
+				KlawDeckDtoFactory.StandardId,
 				KlawDeckDtoFactory.CardSetId,
 				KlawDeckDtoFactory.StandardIdentitySet,
 				KlawDeckDtoFactory.SchemeCardSetId,
@@ -39,8 +42,9 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 				"Klaw Standard",
 				12));
 		Create(
-			KlawDeckDtoFactory.IdentityId2,
+			KlawDeckDtoFactory.ExpertId,
 			new VillainIdentity(
+				KlawDeckDtoFactory.ExpertId,
 				KlawDeckDtoFactory.CardSetId,
 				KlawDeckDtoFactory.ExpertIdentitySet,
 				KlawDeckDtoFactory.SchemeCardSetId,
@@ -48,8 +52,9 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 				"Klaw Expert",
 				18));
 		Create(
-			UltronDeckDtoFactory.IdentityId1,
+			UltronDeckDtoFactory.StandardId,
 			new VillainIdentity(
+				UltronDeckDtoFactory.StandardId,
 				UltronDeckDtoFactory.CardSetId,
 				UltronDeckDtoFactory.StandardIdentitySet,
 				UltronDeckDtoFactory.SchemeCardSetId,
@@ -57,8 +62,9 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 				"Ultron Standard",
 				17));
 		Create(
-			UltronDeckDtoFactory.IdentityId2,
+			UltronDeckDtoFactory.ExpertId,
 			new VillainIdentity(
+				UltronDeckDtoFactory.ExpertId,
 				UltronDeckDtoFactory.CardSetId,
 				UltronDeckDtoFactory.ExpertIdentitySet,
 				UltronDeckDtoFactory.SchemeCardSetId,

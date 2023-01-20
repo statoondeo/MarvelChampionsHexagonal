@@ -9,7 +9,7 @@ public static class IronManDeckDtoFactory
 	public static readonly EntityId CardId = EntityId.Create(new Guid("de7fe95f-40df-48bd-b70f-601b455fdf3a"));
 	public static readonly EntityId CardSetId = EntityId.Create(new Guid("1e0b1de5-e3d2-44ec-9266-f09fc9e13b01"));
 	public static readonly EntityId NemesisCardSetId = EntityId.Create(new Guid("29b19733-b0b1-41d5-8060-d35ec2d1b546"));
-	public static ICardSet Create() => new CardSet(true, false, "Iron Man", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId, true, false, false, "Iron Man", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = CardId, CardSet = CardSetId, Title = "Iron Man" },
 			new CollectibleCardDto() { Id = EntityId.Create("fd90b37d-a164-478a-b157-923207b5a281"), CardSet = CardSetId, Title = "War Machine" },

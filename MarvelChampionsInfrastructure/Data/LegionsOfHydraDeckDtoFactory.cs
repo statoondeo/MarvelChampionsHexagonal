@@ -6,7 +6,7 @@ namespace MarvelChampionsInfrastructure.Data;
 public static class LegionsOfHydraDeckDtoFactory
 {
 	public static readonly EntityId CardSetId = EntityId.Create("8ed34e14-8926-409f-a131-e0b35acd2c18");
-	public static ICardSet Create() => new CardSet(false, true, "Legions of Hydra", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId, false, true, false, "Legions of Hydra", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = EntityId.Create("f714577a-11f4-4957-8d8a-fb3af76c235e"), CardSet = CardSetId, Title = "Legions of Hydra" },
 			new CollectibleCardDto() { Id = EntityId.Create("0d8dce9e-573b-496c-a0aa-248c790b36dd"), CardSet = CardSetId, Title = "Legions of Hydra" },

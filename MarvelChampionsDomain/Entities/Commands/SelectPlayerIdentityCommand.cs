@@ -33,7 +33,7 @@ public sealed class SelectPlayerIdentityCommand : ICommand
 				Player, 
 				ServiceLocator.Instance.Get<ICardSetRepository>()
 					.GetAll()
-					.Where(cardSet => !cardSet.Identity && !cardSet.Encounter)
+					.Where(cardSet => !cardSet.Identity && !cardSet.Encounter && !cardSet.Standard)
 					.ToList());
 	}
 }

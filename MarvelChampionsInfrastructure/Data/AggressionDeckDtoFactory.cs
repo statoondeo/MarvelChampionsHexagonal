@@ -6,7 +6,7 @@ namespace MarvelChampionsInfrastructure.Data;
 public static class AggressionDeckDtoFactory
 {
 	public static readonly EntityId CardSetId = EntityId.Create("51d4a931-d01c-4366-a4da-78696eeaa8e2");
-	public static ICardSet Create() => new CardSet(false, false, "Aggression from CoreSet", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId, false, false, false, "Aggression from CoreSet", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = EntityId.Create("a182dee3-60f6-43d1-b77b-058902767a61"), CardSet = CardSetId, Title = "Hulk" },
 			new CollectibleCardDto() { Id = EntityId.Create("fdb46dda-4b6b-4875-a94c-2bf8d522b6a9"), CardSet = CardSetId, Title = "Tigra" },

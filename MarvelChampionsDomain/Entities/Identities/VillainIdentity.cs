@@ -12,13 +12,14 @@ public sealed class VillainIdentity : BaseEntity, IVillainIdentity
 	public string Title { get; }
 	public int StartingLife { get; }
 	public VillainIdentity(
-			EntityId cardSetId, 
+			EntityId id,
+			EntityId cardSetId,
 			EntityId identityCardSetId,
 			EntityId schemeCardSetId,
 			EntityId standardCardSetId,
 			string title, 
 			int startingLife)
-		: base(EntityId.Create())
+		: base(id)
 	{
 		ArgumentNullException.ThrowIfNull(cardSetId);
 		ArgumentNullException.ThrowIfNull(cardSetId);

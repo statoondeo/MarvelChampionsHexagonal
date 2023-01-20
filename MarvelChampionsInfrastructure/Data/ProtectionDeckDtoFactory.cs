@@ -6,7 +6,7 @@ namespace MarvelChampionsInfrastructure.Data;
 public static class ProtectionDeckDtoFactory
 {
 	public static readonly EntityId CardSetId = EntityId.Create(new Guid("227edd54-803c-47e9-81bd-ac0b99a3750b"));
-	public static ICardSet Create() => new CardSet(false, false, "Protection from CoreSet", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId, false, false, false, "Protection from CoreSet", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = EntityId.Create("bcae71be-8974-4344-86b0-ba39b20d35d6"), Title = "Black Widow" },
 			new CollectibleCardDto() { Id = EntityId.Create("714cb7e6-c15d-4ca5-9292-0d13a5220818"), Title = "Luke Cage" },

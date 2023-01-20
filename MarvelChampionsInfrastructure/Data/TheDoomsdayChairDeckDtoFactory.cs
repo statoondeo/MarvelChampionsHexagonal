@@ -6,7 +6,7 @@ namespace MarvelChampionsInfrastructure.Data;
 public static class TheDoomsdayChairDeckDtoFactory
 {
 	public static readonly EntityId CardSetId = EntityId.Create("eb518080-4bdb-4a7b-9501-013cc3207266");
-	public static ICardSet Create() => new CardSet(false, true, "The Doomsday Chair", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId,false, true, false, "The Doomsday Chair", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = EntityId.Create("62b95a10-f6b3-4349-8f3c-cfe08ac7a30a"), CardSet = CardSetId, Title = "The Doomsday Chair" },
 			new CollectibleCardDto() { Id = EntityId.Create("10540d6c-284a-4615-bc3f-2c769d7310d5"), CardSet = CardSetId, Title = "The Doomsday Chair" },

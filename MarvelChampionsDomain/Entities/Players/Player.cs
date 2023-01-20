@@ -10,6 +10,7 @@ public sealed class Player : BaseEntity, IHeroPlayer
 	public string Nickname { get; }
 	public int Life { get; private set; }
 	public EntityId? Identity { get; private set; }
+	public EntityId? DeckCardSetId { get; private set; }
 	public void InitIdentity(EntityId identity)
 	{
 		ArgumentNullException.ThrowIfNull(identity);
@@ -22,5 +23,11 @@ public sealed class Player : BaseEntity, IHeroPlayer
 		Life = ServiceLocator.Instance.Get<IHeroIdentityRepository>().GetById(Identity!).StartingLife;
 		Logger.Log($"Player.InitLife -> {this}");
 	}
+	public void SetDeckCardSetId(EntityId deckCardSetId)
+	{
+		ArgumentNullException.ThrowIfNull(deckCardSetId);
+		DeckCardSetId = deckCardSetId;
+	}
+
 	public override string ToString() => $"Player[{Nickname}, {Life}, {Identity}]";
 }

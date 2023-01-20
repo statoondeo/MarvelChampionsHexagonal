@@ -6,7 +6,7 @@ namespace MarvelChampionsInfrastructure.Data;
 public static class BombScareDeckDtoFactory
 {
 	public static readonly EntityId CardSetId = EntityId.Create("e45419b2-8570-4b4c-98f1-30eacb8441f6");
-	public static ICardSet Create() => new CardSet(false, true, "Bomb Scare", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId, false, true, false, "Bomb Scare", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = EntityId.Create("c18d3ac2-d156-4973-a561-4f531ca35a80"), CardSet = CardSetId, Title = "Bomb Scare" },
 			new CollectibleCardDto() { Id = EntityId.Create("4d74730d-6240-43a6-9bea-269225ee1bfb"), CardSet = CardSetId, Title = "Hydra Bomber" },

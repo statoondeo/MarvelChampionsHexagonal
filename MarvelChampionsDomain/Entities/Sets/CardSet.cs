@@ -6,15 +6,18 @@ public sealed class CardSet : BaseEntity, ICardSet
 {
 	public bool Identity { get; }
 	public bool Encounter { get; }
+	public bool Standard { get; }
 	public string Description { get; }
 	public List<CollectibleCardDto> Cards { get; }
-	public CardSet(bool identity, bool encounter, string description) 
-		: this(identity, encounter, description, new List<CollectibleCardDto>()) { }
-	public CardSet(bool identity, bool encounter, string description, List<CollectibleCardDto> cards) : base(EntityId.Create())
+	public CardSet(EntityId id, bool identity, bool encounter, bool standard, string description) 
+		: this(id, identity, encounter, standard, description, new List<CollectibleCardDto>()) { }
+	public CardSet(EntityId id, bool identity, bool encounter, bool standard, string description, List<CollectibleCardDto> cards) 
+		: base(id)
 	{
 		ArgumentNullException.ThrowIfNull(cards);
 		Identity = identity;
 		Encounter = encounter;
+		Standard = standard;
 		Description = description;
 		Cards = cards;
 	}

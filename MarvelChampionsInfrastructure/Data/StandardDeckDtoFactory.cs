@@ -6,7 +6,7 @@ namespace MarvelChampionsInfrastructure.Data;
 public static class StandardDeckDtoFactory
 {
 	public static readonly EntityId CardSetId = EntityId.Create("b93afe36-9002-445c-9c11-b7e2534e3447");
-	public static ICardSet Create() => new CardSet(false, true, "Standard from CoreSet", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId, false, true, true, "Standard from CoreSet", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = EntityId.Create("0e439f9e-2e7e-4eb0-9970-afbfa18ac858"), CardSet = CardSetId, Title = "Advance" },
 			new CollectibleCardDto() { Id = EntityId.Create("1681d8d6-56fb-4a2f-93db-00aa7a72de68"), CardSet = CardSetId, Title = "Advance" },

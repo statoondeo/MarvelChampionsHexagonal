@@ -12,7 +12,11 @@ public interface IPlayer : IEntity
 public interface IHeroPlayer : IPlayer
 {
 	string Nickname { get; }
+	public EntityId? DeckCardSetId { get; }
+	void SetDeckCardSetId(EntityId deckCardSetId);
 }
 public interface IVillainPlayer : IPlayer
 {
+	public EntityId? ModularCardSetId { get; }
+	void SetModulatCardSetId(EntityId modularCardSetId);
 }

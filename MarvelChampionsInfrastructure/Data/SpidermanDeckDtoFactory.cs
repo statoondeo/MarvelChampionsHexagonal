@@ -9,7 +9,7 @@ public static class SpidermanDeckDtoFactory
 	public static readonly EntityId CardId = EntityId.Create(new Guid("0956909b-3a72-48e7-8a84-665beb87a369"));
 	public static readonly EntityId CardSetId = EntityId.Create(new Guid("e4d9a052-e79e-43a2-af88-9d77360b858c"));
 	public static readonly EntityId NemesisCardSetId = EntityId.Create(new Guid("291ed711-1154-4fa2-ac72-1529e4051efc"));
-	public static ICardSet Create() => new CardSet(true, false, "Spiderman", new List<CollectibleCardDto>()
+	public static ICardSet Create() => new CardSet(CardSetId, true, false, false, "Spiderman", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = CardId, CardSet = CardSetId, Title = "Spiderman" },
 			new CollectibleCardDto() { Id = EntityId.Create("11dabc0d-e242-4bf8-8e7f-b2fcc7170cd0"), CardSet = CardSetId, Title = "Black Cat" },

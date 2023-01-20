@@ -52,5 +52,8 @@ public sealed class MemoryCardSetRepository : BaseMemoryRepository<EntityId, ICa
 		Create(UnderAttackDeckDtoFactory.CardSetId, UnderAttackDeckDtoFactory.Create());
 		Create(LegionsOfHydraDeckDtoFactory.CardSetId, LegionsOfHydraDeckDtoFactory.Create());
 		Create(TheDoomsdayChairDeckDtoFactory.CardSetId, TheDoomsdayChairDeckDtoFactory.Create());
+
+		Create(StandardDeckDtoFactory.CardSetId, StandardDeckDtoFactory.Create());
+		Create(ExpertDeckDtoFactory.CardSetId, ExpertDeckDtoFactory.Create());
 	}
 }

@@ -5,6 +5,9 @@ namespace MarvelChampionsInfrastructure.Data;
 
 public static class KlawDeckDtoFactory
 {
+	public static readonly EntityId StandardId = EntityId.Create("e9675ce1-0b5f-472c-9db0-a5778d490c95");
+	public static readonly EntityId ExpertId = EntityId.Create("04613764-2ca7-4587-a25a-9bb45e4764d0");
+
 	public static readonly EntityId IdentityId1 = EntityId.Create("329ff88e-4332-455b-ba2b-6795c12cbc89");
 	public static readonly EntityId IdentityId2 = EntityId.Create("dc8df94c-6713-4171-a216-b12f60569e9a");
 	public static readonly EntityId IdentityId3 = EntityId.Create("837ab1ca-b367-4f66-8c28-4ee77b55a273");
@@ -13,17 +16,17 @@ public static class KlawDeckDtoFactory
 	public static readonly EntityId ExpertIdentitySet = EntityId.Create("06b18842-c068-4465-bbee-8235b3d741e9");
 	public static readonly EntityId CardSetId = EntityId.Create("d685ea33-807a-46e2-8a7a-9d633c4b11cf");
 	public static readonly EntityId SchemeCardSetId = EntityId.Create("6c2cfe9f-1adb-4645-b9a7-e8862c6ab6c8");
-	public static ICardSet CreateStandard() => new CardSet(true, true, "Klaw Standard", new List<CollectibleCardDto>()
+	public static ICardSet CreateStandard() => new CardSet(StandardIdentitySet, true, true, false, "Klaw Standard", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = IdentityId1, CardSet = StandardIdentitySet, Title = "Klaw 1" },
 			new CollectibleCardDto() { Id = IdentityId2, CardSet = StandardIdentitySet, Title = "Klaw 2" },
 		});
-	public static ICardSet CreateExpert() => new CardSet(true, true, "Klaw Expert", new List<CollectibleCardDto>()
+	public static ICardSet CreateExpert() => new CardSet(ExpertIdentitySet, true, true, false, "Klaw Expert", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = IdentityId2, CardSet = ExpertIdentitySet, Title = "Klaw 2" },
 			new CollectibleCardDto() { Id = IdentityId3, CardSet = ExpertIdentitySet, Title = "Klaw 3" },
 	});
-	public static ICardSet CreateDeck() => new CardSet(true, true, "Klaw Deck", new List<CollectibleCardDto>()
+	public static ICardSet CreateDeck() => new CardSet(CardSetId, true, true, false, "Klaw Deck", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = EntityId.Create("965c9202-635e-4f7d-b5b1-f362669a1857"), CardSet = CardSetId, Title = "Sonic Converter" },
 			new CollectibleCardDto() { Id = EntityId.Create("600a4cdd-04b1-49b9-b6a9-ffcd69958e95"), CardSet = CardSetId, Title = "Solid-Sound Body" },
@@ -42,7 +45,7 @@ public static class KlawDeckDtoFactory
 			new CollectibleCardDto() { Id = EntityId.Create("ec9e0bb2-43eb-46fe-9e38-30eb59341d0a"), CardSet = CardSetId, Title = "Illegal Arms Factory" },
 			new CollectibleCardDto() { Id = EntityId.Create("c0848f93-ec00-4b77-9a2c-a9c45a3d3b01"), CardSet = CardSetId, Title = "The \"Immortal\" Klaw" },
 		});
-	public static ICardSet CreateScheme() => new CardSet(true, true, "Klaw Scheme", new List<CollectibleCardDto>()
+	public static ICardSet CreateScheme() => new CardSet(SchemeCardSetId, true, true, false, "Klaw Scheme", new List<CollectibleCardDto>()
 		{
 			new CollectibleCardDto() { Id = EntityId.Create("77c2d2ce-1d28-49f1-a7ed-769fbdf5f273"), CardSet = SchemeCardSetId, Title = "Underground Distribution - 1A" },
 			new CollectibleCardDto() { Id = EntityId.Create("5a7ef5a8-655a-4d89-bae3-9cb0e87680e5"), CardSet = SchemeCardSetId, Title = "Underground Distribution - 1B" },
