@@ -10,7 +10,6 @@ namespace MarvelChampionsApplication.CreateAndStartNewGame;
 public sealed class CreateAndStartNewGameUseCase : IUseCase
 {
     private readonly CreateAndStartNewGameUseCaseInput Input;
-
     public CreateAndStartNewGameUseCase(CreateAndStartNewGameUseCaseInput input)
     {
         ArgumentNullException.ThrowIfNull(input);

@@ -11,8 +11,8 @@ public sealed class SetAsidePlayerObligationsCommand : ICommand
 	public SetAsidePlayerObligationsCommand(IPlayer player) => Player = player;
 	public void Execute()
 	{
-		List<ICard> cards = ServiceLocator.Instance.Get<ICardService>()
-			.GetCards(card => card.Owner!.Equals(Player) && card.Type.Equals(TypeEnum.Obligation)).ToList();
-		cards.ForEach(card => card.SetLocation(LocationEnum.Exil));
+		ServiceLocator.Instance.Get<ICardService>()
+			.GetCards(card => card.Owner!.Equals(Player.Id) && card.Type.Equals(TypeEnum.Obligation))
+			.ForEach(card => card.SetLocation(LocationEnum.Exil));
 	}
 }

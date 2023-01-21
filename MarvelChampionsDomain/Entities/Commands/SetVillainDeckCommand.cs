@@ -35,16 +35,13 @@ public sealed class SetVillainDeckCommand : ICommand
 		List<ICard> cards = new();
 		deck.ForEach(collectibleCard =>
 		{
-			ICard card = new Card(
+			CardBuilder cardBuilder = new CardBuilder(
 				collectibleCard.Id!,
 				collectibleCard.CardSet!,
 				collectibleCard.Title!,
-				string.Empty,
-				TypeEnum.None,
-				LocationEnum.None,
-				ClassificationEnum.None,
-				new NullCommand(),
-				new NullCommand());
+				collectibleCard.Type!,
+				ClassificationEnum.None);
+			ICard card = cardBuilder.Build();
 			card.SetOwner(villain.Id);
 			cards.Add(card);
 		});

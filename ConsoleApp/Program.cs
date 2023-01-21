@@ -11,7 +11,7 @@ using MarvelChampionsDomain.Tools;
 
 using MarvelChampionsInfrastructure;
 
-ServiceLocator.Instance.Register<ILoggerService>(new ConsoleLogger());
+ServiceLocator.Instance.Register<ILoggerService>(new FileLogger(@"log.txt"));
 ServiceLocator.Instance.Register<IMediatorService>(new Mediator());
 ServiceLocator.Instance.Register<IPlayerService>(new PlayerService());
 ServiceLocator.Instance.Register<IVillainService>(new VillainService(new VillainPlayer()));

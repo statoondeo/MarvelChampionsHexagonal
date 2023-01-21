@@ -13,12 +13,14 @@ public sealed class TypeEnum : BaseEnum<TypeEnum>
 	public static readonly TypeEnum Resource = new(16, "Resource");
 
 	public static readonly TypeEnum Villain = new(20, "Villain");
-	public static readonly TypeEnum MainScheme = new(21, "MainScheme");
-	public static readonly TypeEnum SideScheme = new(22, "SideScheme");
-	public static readonly TypeEnum Minion = new(23, "Minion");
-	public static readonly TypeEnum Attachment = new(24, "Attachment");
-	public static readonly TypeEnum Treachery = new(25, "Treachery");
-	public static readonly TypeEnum Obligation = new(26, "Obligation");
+	public static readonly TypeEnum MainSchemeA = new(21, "MainScheme");
+	public static readonly TypeEnum MainSchemeB = new(22, "MainScheme");
+	public static readonly TypeEnum SideScheme = new(23, "SideScheme");
+	public static readonly TypeEnum Minion = new(24, "Minion");
+	public static readonly TypeEnum Attachment = new(25, "Attachment");
+	public static readonly TypeEnum Treachery = new(26, "Treachery");
+	public static readonly TypeEnum Obligation = new(27, "Obligation");
+	public static readonly TypeEnum Environment = new(28, "Environment");
 
 	private TypeEnum(int value, string name) : base(value, name) { }
 	public override string ToString() => $"TypeEnum[{base.ToString()}]";

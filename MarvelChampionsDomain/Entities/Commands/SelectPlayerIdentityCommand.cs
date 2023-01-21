@@ -1,7 +1,9 @@
-﻿using MarvelChampionsDomain.Entities.Identities;
+﻿using MarvelChampionsDomain.Entities.Cards;
+using MarvelChampionsDomain.Entities.Identities;
 using MarvelChampionsDomain.Entities.Players;
 using MarvelChampionsDomain.Entities.Services;
 using MarvelChampionsDomain.Entities.Sets;
+using MarvelChampionsDomain.Enums;
 using MarvelChampionsDomain.Tools;
 using MarvelChampionsDomain.ValueObjects;
 
@@ -27,13 +29,36 @@ public sealed class SelectPlayerIdentityCommand : ICommand
 					.Where(hero => !usedHeroes.Contains(hero.Id))
 					.Select(hero => hero)
 					.ToList());
-		ServiceLocator.Instance.Get<IGameService>()
-			.SelectPlayerDeckStrategy
-			.SelectDeckForPlayer(
-				Player, 
-				ServiceLocator.Instance.Get<ICardSetRepository>()
-					.GetAll()
-					.Where(cardSet => !cardSet.Identity && !cardSet.Encounter && !cardSet.Standard)
-					.ToList());
+
+		IHeroIdentity identity = ServiceLocator.Instance.Get<IHeroIdentityRepository>().GetById(Player.Identity!);
+		List<CollectibleCardDto> deck = new();
+		
+		// Ajout des cartes de l'identité
+		deck.AddRange(
+			ServiceLocator.Instance.Get<ICardSetRepository>()
+			.GetById(identity.CardSetId).Cards);
+
+		// Ajout des cartes de némésis
+		deck.AddRange(
+			ServiceLocator.Instance.Get<ICardSetRepository>()
+			.GetById(identity.NemesisCardSetId).Cards);
+
+		// Conversion en cartes jouables
+		List<ICard> cards = new();
+		deck.ForEach(collectibleCard =>
+		{
+			CardBuilder cardBuilder = new CardBuilder(
+				collectibleCard.Id!,
+				collectibleCard.CardSet!,
+				collectibleCard.Title!,
+				collectibleCard.Type!,
+				ClassificationEnum.None);
+			ICard card = cardBuilder.Build();
+			card.SetOwner(Player.Id);
+			cards.Add(card);
+		});
+
+		// Ajout des cartes au service
+		ServiceLocator.Instance.Get<ICardService>().RegisterRange(cards);
 	}
 }

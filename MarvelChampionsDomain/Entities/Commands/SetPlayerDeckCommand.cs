@@ -13,6 +13,7 @@ public sealed class SetPlayerDeckCommand : ICommand
 	public SetPlayerDeckCommand(IHeroPlayer player) => Player = player;
 	public void Execute()
 	{
+		// Sélection du deck du joueur
 		ServiceLocator.Instance.Get<IGameService>()
 			.SelectPlayerDeckStrategy
 			.SelectDeckForPlayer(
@@ -23,31 +24,26 @@ public sealed class SetPlayerDeckCommand : ICommand
 					.ToList());
 
 		List<CollectibleCardDto> deck = new();
-		// Ajout des cartes de l'identité
-		deck.AddRange(
-			ServiceLocator.Instance.Get<ICardSetRepository>()
-			.GetById(
-				ServiceLocator.Instance.Get<IHeroIdentityRepository>()
-				.GetById(Player.Identity!)
-				.CardSetId).Cards);
+		
 		// Ajout des cartes du deck
 		deck.AddRange(ServiceLocator.Instance.Get<ICardSetRepository>().GetById(Player.DeckCardSetId!).Cards);
+
+		// Conversion en cartes jouables
 		List<ICard> cards = new();
 		deck.ForEach(collectibleCard =>
 		{
-			ICard card = new Card(
+			CardBuilder cardBuilder = new CardBuilder(
 				collectibleCard.Id!,
 				collectibleCard.CardSet!,
 				collectibleCard.Title!,
-				string.Empty,
-				TypeEnum.None,
-				LocationEnum.None,
-				ClassificationEnum.None,
-				new NullCommand(),
-				new NullCommand());
+				collectibleCard.Type!,
+				ClassificationEnum.None);
+			ICard card = cardBuilder.Build();
 			card.SetOwner(Player.Id);
 			cards.Add(card);
 		});
+
+		// Ajout des cartes au service
 		ServiceLocator.Instance.Get<ICardService>().RegisterRange(cards);
 	}
 }

@@ -11,8 +11,8 @@ public sealed class SetAsidePlayerNemesisCommand : ICommand
 	public SetAsidePlayerNemesisCommand(IPlayer player) => Player = player;
 	public void Execute()
 	{
-		List<ICard> cards = ServiceLocator.Instance.Get<ICardService>()
-			.GetCards(card => card.Owner!.Equals(Player) && card.Classification.Equals(ClassificationEnum.Nemesis)).ToList();
-		cards.ForEach(card => card.SetLocation(LocationEnum.Exil));
+		ServiceLocator.Instance.Get<ICardService>()
+			.GetCards(card => card.Owner!.Equals(Player) && card.Classification.Equals(ClassificationEnum.Nemesis))
+			.ForEach(card => card.SetLocation(LocationEnum.Exil));
 	}
 }

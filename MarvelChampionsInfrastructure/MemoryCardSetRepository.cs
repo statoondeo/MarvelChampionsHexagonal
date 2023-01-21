@@ -27,10 +27,19 @@ public sealed class MemoryCardSetRepository : BaseMemoryRepository<EntityId, ICa
 		Create(cardSet.Id, cardSet);
 
 		Create(CaptainMarvelDeckDtoFactory.CardSetId, CaptainMarvelDeckDtoFactory.Create());
+		Create(CaptainMarvelDeckDtoFactory.NemesisCardSetId, CaptainMarvelDeckDtoFactory.CreateNemesis());
+
 		Create(MissHulkDeckDtoFactory.CardSetId, MissHulkDeckDtoFactory.Create());
+		Create(MissHulkDeckDtoFactory.NemesisCardSetId, MissHulkDeckDtoFactory.CreateNemesis());
+
 		Create(BlackPantherDeckDtoFactory.CardSetId, BlackPantherDeckDtoFactory.Create());
+		Create(BlackPantherDeckDtoFactory.NemesisCardSetId, BlackPantherDeckDtoFactory.CreateNemesis());
+
 		Create(IronManDeckDtoFactory.CardSetId, IronManDeckDtoFactory.Create());
+		Create(IronManDeckDtoFactory.NemesisCardSetId, IronManDeckDtoFactory.CreateNemesis());
+
 		Create(SpidermanDeckDtoFactory.CardSetId, SpidermanDeckDtoFactory.Create());
+		Create(SpidermanDeckDtoFactory.NemesisCardSetId, SpidermanDeckDtoFactory.CreateNemesis());
 
 		Create(RhinoDeckDtoFactory.StandardIdentitySet, RhinoDeckDtoFactory.CreateStandard());
 		Create(RhinoDeckDtoFactory.ExpertIdentitySet, RhinoDeckDtoFactory.CreateExpert());

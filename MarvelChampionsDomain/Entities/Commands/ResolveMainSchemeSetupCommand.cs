@@ -14,9 +14,9 @@ public sealed class ResolveMainSchemeSetupCommand : ICommand
 			&& card.Location.Equals(LocationEnum.Battlefield);
 
 		ICardService cardService = ServiceLocator.Instance.Get<ICardService>();
-		IReadOnlyList<ICard> beforeSetup = cardService.GetCards(Filter);
-		cardService.GetCards(card => card.Location.Equals(LocationEnum.MainScheme)).ToList().ForEach(card => card.SetupCommand.Execute());
-		IReadOnlyList<ICard> afterSetup = cardService.GetCards(Filter);
+		List<ICard> beforeSetup = cardService.GetCards(Filter);
+		cardService.GetCards(card => card.Location.Equals(LocationEnum.MainScheme)).ForEach(card => card.SetupCommand.Execute());
+		List<ICard> afterSetup = cardService.GetCards(Filter);
 		afterSetup.Where(card => !beforeSetup.Contains(card)).ToList().ForEach(card => card.WhenRevealedCommand.Execute());
 	}
 }

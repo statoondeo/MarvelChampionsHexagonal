@@ -25,9 +25,9 @@ public sealed class CardService : ICardService
 		CardsAtlas.Remove(card ?? throw new ArgumentNullException(nameof(card)));
 		Logger.Log($"CardService.Unregister -> {card}");
 	}
-	public IReadOnlyList<ICard> GetCards(Func<ICard, bool> predicate)
+	public List<ICard> GetCards(Func<ICard, bool> predicate)
 	{
-		return CardsAtlas.Where(predicate).ToList().AsReadOnly();
+		return CardsAtlas.Where(predicate).ToList();
 	}
 	public ICard GetCard(EntityId id) => CardsAtlas.Single(card => card.Id == id);
 }

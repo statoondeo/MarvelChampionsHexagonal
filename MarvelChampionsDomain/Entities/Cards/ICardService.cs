@@ -9,5 +9,5 @@ public interface ICardService : IService
 	void RegisterRange(IList<ICard> cards);
 	void Unregister(ICard card);
 	ICard GetCard(EntityId id);
-	IReadOnlyList<ICard> GetCards(Func<ICard, bool> predicate);
+	List<ICard> GetCards(Func<ICard, bool> predicate);
 }
