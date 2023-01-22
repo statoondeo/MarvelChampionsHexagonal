@@ -11,7 +11,7 @@ public sealed class PlayerDrawHandCompositeCommand : ICommand
 		CompositeCommandBuilder builder = new();
 		ServiceLocator.Instance.Get<IPlayerService>()
 			.Players
-			.ForEach(player => builder.WithCommand(new PlayerDrawHandCommand(player)));
+			.ForEach(player => builder.WithCommand(new DrawHandCommand(player)));
 		builder.Build().Execute();
 	}
 }

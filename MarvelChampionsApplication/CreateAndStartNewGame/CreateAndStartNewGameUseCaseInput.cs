@@ -1,17 +1,13 @@
-﻿using MarvelChampionsApplication.ListCardSets;
-using MarvelChampionsApplication.ListHeroIdentities;
-using MarvelChampionsApplication.ListVillainIdentities;
+﻿using MarvelChampionsApplication.CardSelections;
+using MarvelChampionsApplication.ListCardSets;
 using MarvelChampionsApplication.RegisterPlayer;
-
-using MarvelChampionsDomain.Entities;
 
 namespace MarvelChampionsApplication.CreateAndStartNewGame;
 
 public sealed class CreateAndStartNewGameUseCaseInput
 {
 	public IUseCasePresenter<RegisterPlayerUseCaseInput>? RegisterPlayerPresenter { get; set; }
-	public IUseCasePresenter<ListHeroIdentitiesUseCaseOutput>? SelectPlayerIdentityPresenter { get; set; }
-	public IUseCasePresenter<SelectOneAndOnlyOneCardIO>? SelectVillainIdentityPresenter { get; set; }
-	public IUseCasePresenter<ListCardSetsUseCaseOutput>? SelectDeckPresenter { get; set; }
-    public IChooseCardStrategy? SelectCardStrategy { get; set; }
+	public IUseCasePresenter<SelectAtLeastOneCardIO>? SelectAtLeastOneCardPresenter { get; set; }
+	public IUseCasePresenter<SelectOneAndOnlyOneCardIO>? SelectOneAndOnlyOneCardPresenter { get; set; }
+	public IUseCasePresenter<ListCardSetsUseCaseOutput>? SelectCardSetPresenter { get; set; }
 }

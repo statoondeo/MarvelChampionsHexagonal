@@ -10,25 +10,25 @@ public sealed class GameBuilder
 {
 	private ICommand? SetupCommand;
 	private readonly IRegisterPlayerStrategy RegisterPlayerStrategy;
-	private readonly ISelectOneAndOnlyOneCard SelectVillainIdentityStrategy;
-	private readonly ISelectCardSetStrategy SelectOneAndOnlyOneCard;
-	private readonly IChooseCardStrategy SelectCardStrategy;
+	private readonly ISelectOneAndOnlyOneCard SelectOneAndOnlyOneCard;
+	private readonly ISelectAtLeastOneCardStrategy SelectAtLeastOneCard;
+	private readonly ISelectCardSetStrategy SelectCardSetStrategy;
 
 	public GameBuilder(
 		IRegisterPlayerStrategy registerPlayerStrategy,
 		ISelectOneAndOnlyOneCard selectOneAndOnlyOneCard,
-		ISelectCardSetStrategy selectPlayerDeckStrategy,
-		IChooseCardStrategy selectCardStrategy)
+		ISelectAtLeastOneCardStrategy selectAtLeastCardStrategy,
+		ISelectCardSetStrategy selectCardSetStrategy)
 	{
 		ArgumentNullException.ThrowIfNull(registerPlayerStrategy);
 		ArgumentNullException.ThrowIfNull(selectOneAndOnlyOneCard);
-		ArgumentNullException.ThrowIfNull(selectPlayerDeckStrategy);
-		ArgumentNullException.ThrowIfNull(selectCardStrategy);
+		ArgumentNullException.ThrowIfNull(selectAtLeastCardStrategy);
+		ArgumentNullException.ThrowIfNull(selectCardSetStrategy);
 
 		RegisterPlayerStrategy = registerPlayerStrategy;
-		SelectVillainIdentityStrategy = selectOneAndOnlyOneCard;
-		SelectOneAndOnlyOneCard = selectPlayerDeckStrategy;
-		SelectCardStrategy = selectCardStrategy;
+		SelectOneAndOnlyOneCard = selectOneAndOnlyOneCard;
+		SelectAtLeastOneCard = selectAtLeastCardStrategy;
+		SelectCardSetStrategy = selectCardSetStrategy;
 	}
 	public GameBuilder WithSetupCommand(ICommand setupCommand)
 	{
@@ -36,8 +36,8 @@ public sealed class GameBuilder
 		return this;
 	}
 	public Game Build() => new(SetupCommand!, 
-									RegisterPlayerStrategy, 
+									RegisterPlayerStrategy,
 									SelectOneAndOnlyOneCard,
-									SelectVillainIdentityStrategy,
-									SelectCardStrategy);
+									SelectAtLeastOneCard,
+									SelectCardSetStrategy);
 }

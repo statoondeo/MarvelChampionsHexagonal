@@ -20,9 +20,9 @@ public sealed class CreateAndStartNewGameUseCase : IUseCase
         IGameService gameService = ServiceLocator.Instance.Register<IGameService>(
             new GameBuilder(
                 new RegisterPlayerStrategy(Input.RegisterPlayerPresenter!),
-                new SelectOneAndOnlyOneCard(Input.SelectVillainIdentityPresenter!),
-                new SelectCardSetStrategy(Input.SelectDeckPresenter!),
-                Input.SelectCardStrategy!)
+                new SelectOneAndOnlyOneCardStrategy(Input.SelectOneAndOnlyOneCardPresenter!),
+				new SelectAtLeastOneCardStrategy(Input.SelectAtLeastOneCardPresenter!),
+                new SelectCardSetStrategy(Input.SelectCardSetPresenter!))
             .WithSetupCommand(
                 new CompositeCommandBuilder()
                 .WithCommand(new SelectPlayerIdentityCompositeCommand())

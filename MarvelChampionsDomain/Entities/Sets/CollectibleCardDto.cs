@@ -17,18 +17,22 @@ public sealed class CollectibleCardDto
 }
 public sealed class CollectibleCardBuilder
 {
-	public EntityId Id { get; private set; }
-	public string Title { get; private set; }
+	public EntityId? Id { get; private set; }
+	public string? Title { get; private set; }
 	public EntityId? CardSet { get; private set; }
 	public TypeEnum? Type { get; private set; }
 	public ClassificationEnum? Classification { get; private set; }
-
-	public CollectibleCardBuilder(EntityId id, string title)
+	public CollectibleCardBuilder WithId(EntityId id)
 	{
 		ArgumentNullException.ThrowIfNull(id);
-		if (string.IsNullOrWhiteSpace(title)) throw new ArgumentNullException(nameof(title));
 		Id = id;
+		return this;
+	}
+	public CollectibleCardBuilder WithTitle(string title)
+	{
+		if (string.IsNullOrWhiteSpace(title))throw new ArgumentNullException(nameof(title));
 		Title = title;
+		return this;
 	}
 	public CollectibleCardBuilder WithCardSet(EntityId cardSet)
 	{

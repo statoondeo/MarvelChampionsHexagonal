@@ -9,7 +9,9 @@ public static class AggressionDeckDtoFactory
 	public static readonly EntityId CardSetId = EntityId.Create("51d4a931-d01c-4366-a4da-78696eeaa8e2");
 	public static ICardSet Create() => new CardSet(CardSetId, false, false, false, "Aggression", new List<CollectibleCardDto>()
 		{
-			new CollectibleCardBuilder(EntityId.Create("a182dee3-60f6-43d1-b77b-058902767a61"), "Hulk")
+			new CollectibleCardBuilder()
+				.WithId(EntityId.Create("a182dee3-60f6-43d1-b77b-058902767a61"))		
+				.WithTitle("Hulk")
 				.WithCardSet(CardSetId)
 				.WithType(TypeEnum.Ally)
 				.WithClassification(ClassificationEnum.Aggression)

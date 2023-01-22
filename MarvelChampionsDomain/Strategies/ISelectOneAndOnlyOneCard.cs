@@ -1,10 +1,8 @@
-﻿using MarvelChampionsDomain.Entities.Identities;
-using MarvelChampionsDomain.Entities.Sets;
-using MarvelChampionsDomain.ValueObjects;
+﻿using MarvelChampionsDomain.Entities.Sets;
 
 namespace MarvelChampionsDomain.Strategies;
 
 public interface ISelectOneAndOnlyOneCard
 {
-	EntityId Select(List<CollectibleCardDto> identities);
+	CollectibleCardDto Select(List<CollectibleCardDto> identities);
 }

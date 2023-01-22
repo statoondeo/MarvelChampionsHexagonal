@@ -34,7 +34,7 @@ public sealed class SelectPlayerIdentityCommand : ICommand
 		// Sélection de l'identité
 		EntityId selectedIdentityId = ServiceLocator.Instance.Get<IGameService>()
 			.SelectOneAndOnlyOneCard
-			.Select(identities);
+			.Select(identities).Id!;
 
 		// Initialisation des données du héros sélectionné
 		IHeroIdentity selectedIdentity = identitiesRepository.GetById(selectedIdentityId);

@@ -22,10 +22,9 @@ ServiceLocator.Instance.Register<ICardSetRepository>(new MemoryCardSetRepository
 
 new CreateAndStartNewGameUseCase(new CreateAndStartNewGameUseCaseInput()
 {
-	RegisterPlayerPresenter = new ConsoleRegisterPlayerPresenter(),
-	SelectPlayerIdentityPresenter = new ConsoleListIdentitiesPresenter(),
-	SelectVillainIdentityPresenter = new ConsoleListIdentitiesPresenter(),
-	SelectDeckPresenter = new ConsoleSelectDeckPresenter(),
-	SelectCardStrategy = new ConsoleChooseCardStrategy()
+	RegisterPlayerPresenter = new ConsolePresenter(),
+	SelectOneAndOnlyOneCardPresenter = new ConsolePresenter(),
+	SelectCardSetPresenter = new ConsolePresenter(),
+	SelectAtLeastOneCardPresenter = new ConsolePresenter()
 }).Execute();
 

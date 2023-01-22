@@ -3,9 +3,9 @@ using MarvelChampionsDomain.Enums;
 
 namespace MarvelChampionsDomain.Entities.Commands;
 
-public sealed class PlayerDiscardCardCommand : ICommand
+public sealed class DiscardCardCommand : ICommand
 {
 	private readonly ICard Card;
-	public PlayerDiscardCardCommand(ICard card) => Card = card;
+	public DiscardCardCommand(ICard card) => Card = card;
 	public void Execute() => Card.SetLocation(LocationEnum.Discard);
 }

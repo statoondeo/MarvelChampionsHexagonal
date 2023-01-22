@@ -9,6 +9,6 @@ public interface IGameService : IService
 	IRegisterPlayerStrategy RegisterPlayerStrategy { get; }
 	ISelectOneAndOnlyOneCard SelectOneAndOnlyOneCard { get; }
 	ISelectCardSetStrategy SelectCardSetStrategy { get; }
-	IChooseCardStrategy SelectCardStrategy { get; }
+	ISelectAtLeastOneCardStrategy SelectAtLeastOneCardStrategy { get; }
 	void Start();
 }

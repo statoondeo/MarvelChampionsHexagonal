@@ -6,10 +6,10 @@ using MarvelChampionsDomain.Tools;
 
 namespace MarvelChampionsDomain.Entities.Commands;
 
-public sealed class PlayerDrawHandCommand : ICommand
+public sealed class DrawHandCommand : ICommand
 {
 	private readonly IPlayer Player;
-	public PlayerDrawHandCommand(IPlayer player) => Player = player;
+	public DrawHandCommand(IPlayer player) => Player = player;
 	public void Execute()
 	{
 		IHeroIdentity identity = ServiceLocator.Instance.Get<IHeroIdentityRepository>().GetById(Player.Identity!);

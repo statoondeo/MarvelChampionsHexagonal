@@ -23,7 +23,7 @@ public sealed class SelectVillainIdentityCommand : ICommand
 		// Sélection du villain
 		EntityId selectedIdentityId = ServiceLocator.Instance.Get<IGameService>()
 			.SelectOneAndOnlyOneCard
-			.Select(identities);
+			.Select(identities).Id!;
 
 		// Initialisation des données du villain sélectionné
 		IVillainIdentity selectedIdentity = villainIdentityRepository.GetById(selectedIdentityId);

@@ -15,28 +15,28 @@ public sealed class Game : BaseEntity, IGameService
 	private readonly ICommand SetupCommand;
 	public IRegisterPlayerStrategy RegisterPlayerStrategy { get; }
 	public ISelectOneAndOnlyOneCard SelectOneAndOnlyOneCard { get; }
+	public ISelectAtLeastOneCardStrategy SelectAtLeastOneCardStrategy { get; }
 	public ISelectCardSetStrategy SelectCardSetStrategy { get; }
-	public IChooseCardStrategy SelectCardStrategy { get; }
 
 	public Game(
 		ICommand setupCommand,
 		IRegisterPlayerStrategy registerPlayerStrategy,
-		ISelectCardSetStrategy selectPlayerDeckStrategy,
-		ISelectOneAndOnlyOneCard selectVillainIdentityStrategy,
-		IChooseCardStrategy selectCardStrategy) 
+		ISelectOneAndOnlyOneCard selectOneAndOnlyOneCardStrategy,
+		ISelectAtLeastOneCardStrategy selectAtLeastOneCardStrategy,
+		ISelectCardSetStrategy selectCardSetStrategy) 
 		: base(EntityId.Create())
 	{
 		ArgumentNullException.ThrowIfNull(setupCommand);
 		ArgumentNullException.ThrowIfNull(registerPlayerStrategy);
-		ArgumentNullException.ThrowIfNull(selectPlayerDeckStrategy);
-		ArgumentNullException.ThrowIfNull(selectVillainIdentityStrategy);
-		ArgumentNullException.ThrowIfNull(selectCardStrategy);
+		ArgumentNullException.ThrowIfNull(selectOneAndOnlyOneCardStrategy);
+		ArgumentNullException.ThrowIfNull(selectAtLeastOneCardStrategy);
+		ArgumentNullException.ThrowIfNull(selectCardSetStrategy);
 
 		SetupCommand = setupCommand;
 		RegisterPlayerStrategy = registerPlayerStrategy;
-		SelectCardSetStrategy = selectPlayerDeckStrategy;
-		SelectOneAndOnlyOneCard = selectVillainIdentityStrategy;
-		SelectCardStrategy = selectCardStrategy;
+		SelectOneAndOnlyOneCard = selectOneAndOnlyOneCardStrategy;
+		SelectAtLeastOneCardStrategy = selectAtLeastOneCardStrategy;
+		SelectCardSetStrategy = selectCardSetStrategy;
 	}
 	public void Start()
 	{

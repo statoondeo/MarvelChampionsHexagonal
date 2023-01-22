@@ -1,4 +1,10 @@
-﻿using MarvelChampionsDomain.Entities.Players;
+﻿using MarvelChampionsDomain.Entities.Builders;
+using MarvelChampionsDomain.Entities.Cards;
+using MarvelChampionsDomain.Entities.Players;
+using MarvelChampionsDomain.Entities.Services;
+using MarvelChampionsDomain.Entities.Sets;
+using MarvelChampionsDomain.Enums;
+using MarvelChampionsDomain.Tools;
 
 namespace MarvelChampionsDomain.Entities.Commands;
 
@@ -8,12 +14,21 @@ public sealed class PlayerMulliganCommand : ICommand
 	public PlayerMulliganCommand(IPlayer player) => Player = player;
 	public void Execute()
 	{
-		//bool AmongFilter(ICard card) => card.Owner!.Equals(Player) && card.Location.Equals(LocationEnum.Hand);
-
-		//List<ICard> cardsToDiscard = ChooseCardStrategy.ChooseCards(AmongFilter).ToList();
-		//List<ICommand> commands = new();
-		//cardsToDiscard.ForEach(card => commands.Add(new PlayerDiscardCardCommand(card)));
-		//commands.Add(new PlayerDrawHandCommand(Player));
-		//new CompositeCommand(commands).Execute();
+		ICardService cardService = ServiceLocator.Instance.Get<ICardService>();
+		List<CollectibleCardDto> cardsToDiscard = ServiceLocator.Instance.Get<IGameService>()
+			.SelectAtLeastOneCardStrategy
+			.Select(cardService
+				.GetCards(card => Player.Id.Equals(card.Owner) && LocationEnum.Hand.Equals(card.Location))
+				.Select(card => new CollectibleCardDto()
+				{
+					Id = card.Id,
+					Title = card.Title,
+				})
+				.ToList());
+		CompositeCommandBuilder builder = new();
+		cardsToDiscard
+			.ForEach(card => builder.WithCommand(new DiscardCardCommand(cardService.GetCard(card.Id!))));
+		builder.WithCommand(new DrawHandCommand(Player));
+		builder.Build().Execute();
 	}
 }
