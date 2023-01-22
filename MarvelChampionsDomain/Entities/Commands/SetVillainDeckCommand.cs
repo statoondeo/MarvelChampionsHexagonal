@@ -33,6 +33,7 @@ public sealed class SetVillainDeckCommand : ICommand
 				collectibleCard.Title!,
 				collectibleCard.Type!,
 				collectibleCard.Classification!);
+			if (collectibleCard.SetupCommand is not null) cardBuilder.WithSetupCommand(collectibleCard.SetupCommand);
 			cardBuilder.WithLocation(LocationEnum.Deck);
 			cardBuilder.WithOwner(villain.Id);
 			cards.Add(cardBuilder.Build());

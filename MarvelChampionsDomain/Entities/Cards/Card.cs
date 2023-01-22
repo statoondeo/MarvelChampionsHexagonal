@@ -1,6 +1,5 @@
 ﻿using MarvelChampionsDomain.Basics;
 using MarvelChampionsDomain.Entities.Commands;
-using MarvelChampionsDomain.Entities.Players;
 using MarvelChampionsDomain.Enums;
 using MarvelChampionsDomain.Tools;
 using MarvelChampionsDomain.ValueObjects;
@@ -9,6 +8,7 @@ namespace MarvelChampionsDomain.Entities.Cards;
 
 public class Card : BaseEntity, ICard
 {
+	public int Order { get; private set; }
 	public EntityId? Owner { get; private set; }
 	public EntityId CardSet { get; private set; }
 	public string Title { get; }
@@ -37,6 +37,7 @@ public class Card : BaseEntity, ICard
 		ArgumentNullException.ThrowIfNull(setupCommand);
 		ArgumentNullException.ThrowIfNull(whenRevealedCommand);
 
+		Order = 0;
 		CardSet = cardSet;
 		Title = title;
         SubTitle = subTitle;
@@ -52,11 +53,22 @@ public class Card : BaseEntity, ICard
 		Owner = owner;
 		Logger.Log($"Card.SetOwner -> {this}");
 	}
+	private void RenumLocationFrom(EntityId owner, LocationEnum location, int fromIndex)
+	{
+		ServiceLocator.Instance.Get<ICardService>()
+			.GetCards(card => owner.Equals(card.Owner) && location.Equals(card.Location) && card.Order > fromIndex)
+			.ForEach(card => card.SetOrder(card.Order - 1));
+	}
 	public void SetLocation(LocationEnum location)
 	{
-		Location = location ?? throw new ArgumentNullException(nameof(location));
+		ArgumentNullException.ThrowIfNull(location);
+		if (!LocationEnum.None.Equals(Location)) RenumLocationFrom(Owner!, Location, Order);
+		SetOrder(ServiceLocator.Instance.Get<ICardService>()
+			.GetCards(card => Owner!.Equals(card.Owner) && location.Equals(card.Location)).Count);
+		Location = location;
 		Logger.Log($"Card.SetLocation -> {this}");
 	}
+	public void SetOrder(int order) => Order = order;
 
-	public override string ToString() => $"Card[{Title}, {SubTitle}, {Location}]";
+	public override string ToString() => $"Card[{Title}, {Order}, {Location}]";
 }

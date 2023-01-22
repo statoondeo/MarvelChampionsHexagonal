@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-using MarvelChampionsDomain.Entities.Cards;
+﻿using MarvelChampionsDomain.Entities.Cards;
 using MarvelChampionsDomain.Entities.Identities;
 using MarvelChampionsDomain.Entities.Players;
 using MarvelChampionsDomain.Entities.Services;
@@ -17,19 +15,18 @@ public sealed class SelectPlayerIdentityCommand : ICommand
 	public SelectPlayerIdentityCommand(IHeroPlayer player) => Player = player;
 	public void Execute()
 	{
-		// Constitution de la liste des villains pour sélection
+		// Constitution de la liste des identités pour sélection
 		List<EntityId> usedIdentities = ServiceLocator.Instance.Get<IPlayerService>()
 			.Players
 			.Where(player => player.Identity is not null)
 			.Select(player => player.Identity!)
 			.ToList(); 
-		List<CollectibleCardDto> identities = new();
 		IHeroIdentityRepository identitiesRepository = ServiceLocator.Instance.Get<IHeroIdentityRepository>();
-		identitiesRepository
+		List<CollectibleCardDto> identities = identitiesRepository
 			.GetAll()
 			.Where(identity => !usedIdentities.Contains(identity.Id))
-			.ToList()
-			.ForEach(identity => identities.Add(new CollectibleCardBuilder(identity.Id, identity.Title).Build()));
+			.Select(identity => new CollectibleCardBuilder().WithId(identity.Id).WithTitle(identity.Title).Build())
+			.ToList();
 
 		// Sélection de l'identité
 		EntityId selectedIdentityId = ServiceLocator.Instance.Get<IGameService>()
@@ -63,6 +60,7 @@ public sealed class SelectPlayerIdentityCommand : ICommand
 				collectibleCard.Title!,
 				collectibleCard.Type!,
 				collectibleCard.Classification!);
+			if (collectibleCard.SetupCommand is not null) cardBuilder.WithSetupCommand(collectibleCard.SetupCommand);
 			cardBuilder.WithLocation(TypeEnum.Hero.Equals(collectibleCard.Type) ? LocationEnum.Battlefield : LocationEnum.Deck);
 			cardBuilder.WithOwner(Player.Id);
 			cards.Add(cardBuilder.Build());

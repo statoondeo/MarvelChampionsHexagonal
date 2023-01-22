@@ -1,5 +1,8 @@
-﻿using MarvelChampionsDomain.Entities.Sets;
+﻿using MarvelChampionsDomain.Entities.Commands;
+using MarvelChampionsDomain.Entities.Services;
+using MarvelChampionsDomain.Entities.Sets;
 using MarvelChampionsDomain.Enums;
+using MarvelChampionsDomain.Tools;
 using MarvelChampionsDomain.ValueObjects;
 
 namespace MarvelChampionsInfrastructure.Data;
@@ -14,9 +17,10 @@ public static class CaptainMarvelDeckDtoFactory
 	public static readonly string Title = "Captain Marvel";
 	public static readonly int StartingLife = 12;
 	public static readonly int HandSize = 6;
+
 	public static ICardSet Create() => new CardSet(CardSetId, true, false, false, "Captain Marvel", new List<CollectibleCardDto>()
 		{
-			new CollectibleCardDto() { Id = CardId, Classification = ClassificationEnum.Identity, Type = TypeEnum.Hero, CardSet = CardSetId, Title = "Captain Marvel" },
+			new CollectibleCardDto() { Id = CardId, Classification = ClassificationEnum.Identity, Type = TypeEnum.Hero, CardSet = CardSetId, Title = "Captain Marvel", SetupCommand = new CaptainMarvelSetupCommand()},
 			new CollectibleCardDto() { Id = EntityId.Create("4d17afb3-28d2-4425-95ce-2a12f09e8209"), Classification = ClassificationEnum.Identity, Type = TypeEnum.Ally, CardSet = CardSetId, Title = "Spider-Woman" },
 			new CollectibleCardDto() { Id = EntityId.Create("ccc8be7e-9175-4e30-9b69-4a7ee70faf61"), Classification = ClassificationEnum.Identity, Type = TypeEnum.Event, CardSet = CardSetId, Title = "Crisis Interdiction" },
 			new CollectibleCardDto() { Id = EntityId.Create("c5fff9ee-2cc9-4cea-90e1-cc5dedb79258"), Classification = ClassificationEnum.Identity, Type = TypeEnum.Event, CardSet = CardSetId, Title = "Crisis Interdiction" },
@@ -41,4 +45,8 @@ public static class CaptainMarvelDeckDtoFactory
 			new CollectibleCardDto() { Id = EntityId.Create("ba05e5ac-a0fe-4de4-94b4-d4972772dd54"), Classification = ClassificationEnum.Nemesis, Type = TypeEnum.Treachery, CardSet = NemesisCardSetId, Title = "Kree Manipulator" },
 			new CollectibleCardDto() { Id = EntityId.Create("d994a33d-2d80-45bb-8e81-ee4837a52f22"), Classification = ClassificationEnum.Nemesis, Type = TypeEnum.Treachery, CardSet = NemesisCardSetId, Title = "Yon-Rogg's Treason" }
 		});
+}
+public sealed class CaptainMarvelSetupCommand : ICommand
+{
+	public void Execute() => ServiceLocator.Instance.Get<ILoggerService>().Log("Resolve CaptainMarvelSetupCommand");
 }

@@ -19,15 +19,10 @@ public sealed class PlayerMulliganCommand : ICommand
 			.SelectAtLeastOneCardStrategy
 			.Select(cardService
 				.GetCards(card => Player.Id.Equals(card.Owner) && LocationEnum.Hand.Equals(card.Location))
-				.Select(card => new CollectibleCardDto()
-				{
-					Id = card.Id,
-					Title = card.Title,
-				})
+				.Select(card => new CollectibleCardDto() { Id = card.Id, Title = card.Title })
 				.ToList());
 		CompositeCommandBuilder builder = new();
-		cardsToDiscard
-			.ForEach(card => builder.WithCommand(new DiscardCardCommand(cardService.GetCard(card.Id!))));
+		cardsToDiscard.ForEach(card => builder.WithCommand(new DiscardCardCommand(cardService.GetCard(card.Id!))));
 		builder.WithCommand(new DrawHandCommand(Player));
 		builder.Build().Execute();
 	}

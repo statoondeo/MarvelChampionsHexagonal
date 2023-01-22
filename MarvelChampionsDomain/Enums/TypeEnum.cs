@@ -1,5 +1,6 @@
 ﻿namespace MarvelChampionsDomain.Enums;
 
+[Serializable]
 public sealed class TypeEnum : BaseEnum<TypeEnum>
 {
 	public static readonly TypeEnum None = new(0, "None");

@@ -6,7 +6,6 @@ using MarvelChampionsDomain.Enums;
 using MarvelChampionsDomain.Tools;
 
 namespace MarvelChampionsDomain.Entities.Commands;
-
 public sealed class SetPlayerDeckCommand : ICommand
 {
 	private readonly IHeroPlayer Player;
@@ -34,7 +33,8 @@ public sealed class SetPlayerDeckCommand : ICommand
 					collectibleCard.CardSet!,
 					collectibleCard.Title!,
 					collectibleCard.Type!,
-					collectibleCard.Classification!);
+				collectibleCard.Classification!);
+				if (collectibleCard.SetupCommand is not null) cardBuilder.WithSetupCommand(collectibleCard.SetupCommand);
 				cardBuilder.WithLocation(LocationEnum.Deck);
 				cardBuilder.WithOwner(Player.Id);
 				cards.Add(cardBuilder.Build());

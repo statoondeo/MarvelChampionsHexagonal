@@ -4,6 +4,7 @@ using MarvelChampionsDomain.Basics;
 using MarvelChampionsDomain.Entities.Cards;
 using MarvelChampionsDomain.Entities.Commands;
 using MarvelChampionsDomain.Entities.Services;
+using MarvelChampionsDomain.Enums;
 using MarvelChampionsDomain.Strategies;
 using MarvelChampionsDomain.Tools;
 using MarvelChampionsDomain.ValueObjects;
@@ -44,9 +45,19 @@ public sealed class Game : BaseEntity, IGameService
 		Logger.Log("Game.Start");
 		SetupCommand.Execute();
 		Logger.Log("Setup completed");
-		ServiceLocator.Instance.Get<ICardService>()
-			.GetCards(card => true)
-			.ForEach(card => Logger.Log(card.ToString()));
 
+		ICardService cardService = ServiceLocator.Instance.Get<ICardService>();
+		foreach (LocationEnum location in new List<LocationEnum> {  LocationEnum.Exil,
+																	LocationEnum.Battlefield,
+																	LocationEnum.Hand,
+																	LocationEnum.Discard,
+																	LocationEnum.Deck,
+																	LocationEnum.MainScheme})
+		{
+			Logger.Log(location.ToString());
+			cardService
+				.GetCards(card => ServiceLocator.Instance.Get<IPlayerService>().First.Id.Equals(card.Owner) && location.Equals(card.Location))
+				.ForEach(card => Logger.Log("\t" + card.ToString()));
+		}
 	}
 }

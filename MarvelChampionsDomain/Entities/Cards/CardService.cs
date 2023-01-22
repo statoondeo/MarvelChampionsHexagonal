@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-using MarvelChampionsDomain.Tools;
+﻿using MarvelChampionsDomain.Tools;
 using MarvelChampionsDomain.ValueObjects;
 
 namespace MarvelChampionsDomain.Entities.Cards;
@@ -25,9 +23,6 @@ public sealed class CardService : ICardService
 		CardsAtlas.Remove(card ?? throw new ArgumentNullException(nameof(card)));
 		Logger.Log($"CardService.Unregister -> {card}");
 	}
-	public List<ICard> GetCards(Func<ICard, bool> predicate)
-	{
-		return CardsAtlas.Where(predicate).ToList();
-	}
+	public List<ICard> GetCards(Func<ICard, bool> predicate) => CardsAtlas.Where(predicate).OrderBy(card => card.Order).ToList();
 	public ICard GetCard(EntityId id) => CardsAtlas.Single(card => card.Id == id);
 }

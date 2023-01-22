@@ -1,19 +1,20 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Text.Json;
 
-using MarvelChampionsDomain.Entities.Cards;
+using MarvelChampionsDomain.Entities.Commands;
 using MarvelChampionsDomain.Enums;
 using MarvelChampionsDomain.ValueObjects;
 
 namespace MarvelChampionsDomain.Entities.Sets;
 
+[Serializable]
 public sealed class CollectibleCardDto
 {
-	public CollectibleCardDto() { }
 	public EntityId? Id { get; set; }
 	public EntityId? CardSet { get; set; }
 	public string? Title { get; set; }
 	public TypeEnum? Type { get; set; }
 	public ClassificationEnum? Classification { get; set; }
+	public ICommand? SetupCommand { get; set; }
 }
 public sealed class CollectibleCardBuilder
 {
@@ -52,7 +53,9 @@ public sealed class CollectibleCardBuilder
 		Classification = classification;
 		return this;
 	}
-	public CollectibleCardDto Build() => new CollectibleCardDto()
+	public CollectibleCardDto Build(bool serialize)
+	{
+		CollectibleCardDto dto = new()
 		{
 			Id = this.Id,
 			Title = this.Title,
@@ -60,4 +63,9 @@ public sealed class CollectibleCardBuilder
 			Type = this.Type,
 			Classification = this.Classification,
 		};
+		if (!serialize) return dto;
+		File.WriteAllText(dto.Id!.ToString() + ".txt", JsonSerializer.Serialize(dto));
+		return dto;
+	}
+	public CollectibleCardDto Build() => Build(false);
 }

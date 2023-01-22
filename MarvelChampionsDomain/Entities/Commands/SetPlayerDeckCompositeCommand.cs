@@ -11,7 +11,12 @@ public sealed class SetPlayerDeckCompositeCommand : ICommand
 		CompositeCommandBuilder commands = new();
 		ServiceLocator.Instance.Get<IPlayerService>()
 			.Players
-			.ForEach(player => commands.WithCommand(new SetPlayerDeckCommand(player)));
+			.ForEach(player => 
+			{
+				commands.WithCommand(new SetPlayerDeckCommand(player));
+				commands.WithCommand(new RenumCardsCommand(player.Id));
+				commands.WithCommand(new ShuffleDeckCommand(player.Id));
+			});
 		commands.Build().Execute();
 	}
 }

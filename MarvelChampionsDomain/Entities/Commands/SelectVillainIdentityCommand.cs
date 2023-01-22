@@ -14,11 +14,11 @@ public sealed class SelectVillainIdentityCommand : ICommand
 	public void Execute()
 	{
 		// Constitution de la liste des villains pour sélection
-		List<CollectibleCardDto> identities = new();
 		IVillainIdentityRepository villainIdentityRepository = ServiceLocator.Instance.Get<IVillainIdentityRepository>();
-		villainIdentityRepository
+		List<CollectibleCardDto> identities = villainIdentityRepository
 			.GetAll()
-			.ForEach(identity => identities.Add(new CollectibleCardBuilder(identity.Id, identity.Title).Build()));
+			.Select(identity => new CollectibleCardBuilder().WithId(identity.Id).WithTitle(identity.Title).Build())
+			.ToList();
 
 		// Sélection du villain
 		EntityId selectedIdentityId = ServiceLocator.Instance.Get<IGameService>()
@@ -50,6 +50,7 @@ public sealed class SelectVillainIdentityCommand : ICommand
 				collectibleCard.Title!,
 				collectibleCard.Type!,
 				collectibleCard.Classification!);
+			if (collectibleCard.SetupCommand is not null) cardBuilder.WithSetupCommand(collectibleCard.SetupCommand);
 			LocationEnum cardlocation = LocationEnum.Deck;
 			if (TypeEnum.Villain.Equals(collectibleCard.Type))
 			{

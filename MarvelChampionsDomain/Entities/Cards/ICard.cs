@@ -6,6 +6,7 @@ namespace MarvelChampionsDomain.Entities.Cards;
 
 public interface ICard : IEntity
 {
+	int Order { get; }
 	EntityId? Owner { get; }
 	EntityId? CardSet { get; }
 	string Title { get; }
@@ -18,4 +19,5 @@ public interface ICard : IEntity
 
 	void SetOwner(EntityId owner);
 	void SetLocation(LocationEnum location);
+	void SetOrder(int order);
 }
