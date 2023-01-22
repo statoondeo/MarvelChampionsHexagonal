@@ -1,4 +1,6 @@
-﻿using MarvelChampionsDomain.Entities.Cards;
+﻿using System.Linq;
+
+using MarvelChampionsDomain.Entities.Cards;
 using MarvelChampionsDomain.Entities.Identities;
 using MarvelChampionsDomain.Entities.Players;
 using MarvelChampionsDomain.Entities.Services;
@@ -15,47 +17,55 @@ public sealed class SelectPlayerIdentityCommand : ICommand
 	public SelectPlayerIdentityCommand(IHeroPlayer player) => Player = player;
 	public void Execute()
 	{
-		ISet<EntityId> usedHeroes = ServiceLocator.Instance.Get<IPlayerService>()
+		// Constitution de la liste des villains pour sélection
+		List<EntityId> usedIdentities = ServiceLocator.Instance.Get<IPlayerService>()
 			.Players
 			.Where(player => player.Identity is not null)
 			.Select(player => player.Identity!)
-			.ToHashSet();
-		ServiceLocator.Instance.Get<IGameService>()
-			.SelectPlayerIdentityStrategy
-			.SelectIdentityForPlayer(
-				Player,
-				ServiceLocator.Instance.Get<IHeroIdentityRepository>()
-					.GetAll()
-					.Where(hero => !usedHeroes.Contains(hero.Id))
-					.Select(hero => hero)
-					.ToList());
+			.ToList(); 
+		List<CollectibleCardDto> identities = new();
+		IHeroIdentityRepository identitiesRepository = ServiceLocator.Instance.Get<IHeroIdentityRepository>();
+		identitiesRepository
+			.GetAll()
+			.Where(identity => !usedIdentities.Contains(identity.Id))
+			.ToList()
+			.ForEach(identity => identities.Add(new CollectibleCardBuilder(identity.Id, identity.Title).Build()));
 
-		IHeroIdentity identity = ServiceLocator.Instance.Get<IHeroIdentityRepository>().GetById(Player.Identity!);
+		// Sélection de l'identité
+		EntityId selectedIdentityId = ServiceLocator.Instance.Get<IGameService>()
+			.SelectOneAndOnlyOneCard
+			.Select(identities);
+
+		// Initialisation des données du héros sélectionné
+		IHeroIdentity selectedIdentity = identitiesRepository.GetById(selectedIdentityId);
+		Player.InitIdentity(selectedIdentity.Id);
+
+		// Constitution du deck
 		List<CollectibleCardDto> deck = new();
-		
+
 		// Ajout des cartes de l'identité
 		deck.AddRange(
 			ServiceLocator.Instance.Get<ICardSetRepository>()
-			.GetById(identity.CardSetId).Cards);
+			.GetById(selectedIdentity.CardSetId).Cards);
 
 		// Ajout des cartes de némésis
 		deck.AddRange(
 			ServiceLocator.Instance.Get<ICardSetRepository>()
-			.GetById(identity.NemesisCardSetId).Cards);
+			.GetById(selectedIdentity.NemesisCardSetId).Cards);
 
 		// Conversion en cartes jouables
 		List<ICard> cards = new();
 		deck.ForEach(collectibleCard =>
 		{
-			CardBuilder cardBuilder = new CardBuilder(
+			CardBuilder cardBuilder = new(
 				collectibleCard.Id!,
 				collectibleCard.CardSet!,
 				collectibleCard.Title!,
 				collectibleCard.Type!,
-				ClassificationEnum.None);
-			ICard card = cardBuilder.Build();
-			card.SetOwner(Player.Id);
-			cards.Add(card);
+				collectibleCard.Classification!);
+			cardBuilder.WithLocation(TypeEnum.Hero.Equals(collectibleCard.Type) ? LocationEnum.Battlefield : LocationEnum.Deck);
+			cardBuilder.WithOwner(Player.Id);
+			cards.Add(cardBuilder.Build());
 		});
 
 		// Ajout des cartes au service

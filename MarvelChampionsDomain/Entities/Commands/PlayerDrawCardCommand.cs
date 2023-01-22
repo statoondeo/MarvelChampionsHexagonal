@@ -12,7 +12,7 @@ public sealed class PlayerDrawCardCommand : ICommand
 	public void Execute()
 	{
 		ServiceLocator.Instance.Get<ICardService>()
-			.GetCards(card => card.Owner!.Equals(Player) && card.Location.Equals(LocationEnum.Deck))[0]
+			.GetCards(card => card.Owner!.Equals(Player.Id) && card.Location.Equals(LocationEnum.Deck))[0]
 			.SetLocation(LocationEnum.Hand);
 	}
 }

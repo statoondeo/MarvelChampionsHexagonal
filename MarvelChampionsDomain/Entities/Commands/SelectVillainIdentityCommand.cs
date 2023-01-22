@@ -1,5 +1,11 @@
-﻿using MarvelChampionsDomain.Entities.Services;
+﻿using MarvelChampionsDomain.Entities.Cards;
+using MarvelChampionsDomain.Entities.Identities;
+using MarvelChampionsDomain.Entities.Players;
+using MarvelChampionsDomain.Entities.Services;
+using MarvelChampionsDomain.Entities.Sets;
+using MarvelChampionsDomain.Enums;
 using MarvelChampionsDomain.Tools;
+using MarvelChampionsDomain.ValueObjects;
 
 namespace MarvelChampionsDomain.Entities.Commands;
 
@@ -7,11 +13,58 @@ public sealed class SelectVillainIdentityCommand : ICommand
 {
 	public void Execute()
 	{
-		ServiceLocator.Instance.Get<IGameService>()
-			.SelectVillainIdentityStrategy
-			.SelectIdentity(
-				ServiceLocator.Instance.Get<IVillainIdentityRepository>()
-					.GetAll()
-					.ToList());
+		// Constitution de la liste des villains pour sélection
+		List<CollectibleCardDto> identities = new();
+		IVillainIdentityRepository villainIdentityRepository = ServiceLocator.Instance.Get<IVillainIdentityRepository>();
+		villainIdentityRepository
+			.GetAll()
+			.ForEach(identity => identities.Add(new CollectibleCardBuilder(identity.Id, identity.Title).Build()));
+
+		// Sélection du villain
+		EntityId selectedIdentityId = ServiceLocator.Instance.Get<IGameService>()
+			.SelectOneAndOnlyOneCard
+			.Select(identities);
+
+		// Initialisation des données du villain sélectionné
+		IVillainIdentity selectedIdentity = villainIdentityRepository.GetById(selectedIdentityId);
+		IVillainPlayer villain = ServiceLocator.Instance.Get<IVillainService>().Villain!;
+		villain.InitIdentity(selectedIdentityId);
+
+		// Constitution du deck
+		List<CollectibleCardDto> deck = new();
+
+		// Ajout des cartes d'identité
+		ICardSetRepository cardSetRepository = ServiceLocator.Instance.Get<ICardSetRepository>();
+		deck.AddRange(cardSetRepository.GetById(selectedIdentity.IdentityCardSetId).Cards);
+		deck.AddRange(cardSetRepository.GetById(selectedIdentity.StandardCardSetId).Cards);
+		deck.AddRange(cardSetRepository.GetById(selectedIdentity.CardSetId).Cards);
+		deck.AddRange(cardSetRepository.GetById(selectedIdentity.SchemeCardSetId).Cards);
+
+		// Conversion en cartes jouables
+		List<ICard> cards = new();
+		deck.ForEach(collectibleCard =>
+		{
+			CardBuilder cardBuilder = new(
+				collectibleCard.Id!,
+				collectibleCard.CardSet!,
+				collectibleCard.Title!,
+				collectibleCard.Type!,
+				collectibleCard.Classification!);
+			LocationEnum cardlocation = LocationEnum.Deck;
+			if (TypeEnum.Villain.Equals(collectibleCard.Type))
+			{
+				cardlocation = LocationEnum.Battlefield;
+			}
+			else if (TypeEnum.MainSchemeA.Equals(collectibleCard.Type) || TypeEnum.MainSchemeB.Equals(collectibleCard.Type))
+			{
+				cardlocation = LocationEnum.MainScheme;
+			}
+			cardBuilder.WithLocation(cardlocation);
+			cardBuilder.WithOwner(villain.Id);
+			cards.Add(cardBuilder.Build());
+		});
+
+		// Alimention du service avec les cartes du villain
+		ServiceLocator.Instance.Get<ICardService>().RegisterRange(cards);
 	}
 }

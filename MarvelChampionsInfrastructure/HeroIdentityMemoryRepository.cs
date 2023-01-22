@@ -17,8 +17,9 @@ public sealed class HeroIdentityMemoryRepository : BaseMemoryRepository<EntityId
 				CaptainMarvelDeckDtoFactory.CardSetId,
 				CaptainMarvelDeckDtoFactory.NemesisCardSetId,
 				CaptainMarvelDeckDtoFactory.CardId,
-				"Captain Marvel",
-				12));
+				CaptainMarvelDeckDtoFactory.Title,
+				CaptainMarvelDeckDtoFactory.StartingLife,
+				CaptainMarvelDeckDtoFactory.HandSize));
 		Create(
 			MissHulkDeckDtoFactory.IdentityId,
 			new HeroIdentity(
@@ -26,8 +27,9 @@ public sealed class HeroIdentityMemoryRepository : BaseMemoryRepository<EntityId
 				MissHulkDeckDtoFactory.CardSetId,
 				MissHulkDeckDtoFactory.NemesisCardSetId,
 				MissHulkDeckDtoFactory.CardId,
-				"Miss Hulk",
-				14));
+				MissHulkDeckDtoFactory.Title,
+				MissHulkDeckDtoFactory.StartingLife,
+				MissHulkDeckDtoFactory.HandSize));
 		Create(
 			SpidermanDeckDtoFactory.IdentityId,
 			new HeroIdentity(
@@ -35,8 +37,9 @@ public sealed class HeroIdentityMemoryRepository : BaseMemoryRepository<EntityId
 				SpidermanDeckDtoFactory.CardSetId,
 				SpidermanDeckDtoFactory.NemesisCardSetId,
 				SpidermanDeckDtoFactory.CardId,
-				"Spiderman",
-				10));
+				SpidermanDeckDtoFactory.Title,
+				SpidermanDeckDtoFactory.StartingLife,
+				SpidermanDeckDtoFactory.HandSize));
 		Create(
 			IronManDeckDtoFactory.IdentityId,
 			new HeroIdentity(
@@ -44,8 +47,9 @@ public sealed class HeroIdentityMemoryRepository : BaseMemoryRepository<EntityId
 				IronManDeckDtoFactory.CardSetId,
 				IronManDeckDtoFactory.NemesisCardSetId,
 				IronManDeckDtoFactory.CardId,
-				"Iron Man",
-				9));
+				IronManDeckDtoFactory.Title,
+				IronManDeckDtoFactory.StartingLife,
+				IronManDeckDtoFactory.HandSize));
 		Create(
 			BlackPantherDeckDtoFactory.IdentityId,
 			new HeroIdentity(
@@ -53,7 +57,8 @@ public sealed class HeroIdentityMemoryRepository : BaseMemoryRepository<EntityId
 				BlackPantherDeckDtoFactory.CardSetId,
 				BlackPantherDeckDtoFactory.NemesisCardSetId,
 				BlackPantherDeckDtoFactory.CardId,
-				"Black Panther",
-				11));
+				BlackPantherDeckDtoFactory.Title,
+				BlackPantherDeckDtoFactory.StartingLife,
+				BlackPantherDeckDtoFactory.HandSize));
 	}
 }

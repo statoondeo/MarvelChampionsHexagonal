@@ -1,15 +1,15 @@
 ﻿using MarvelChampionsApplication;
-using MarvelChampionsApplication.ListAvailableDecks;
+using MarvelChampionsApplication.ListCardSets;
 
 namespace ConsoleApp;
 
-public sealed class ConsoleSelectDeckPresenter : IUseCasePresenter<ListDecksUseCaseOutput>
+public sealed class ConsoleSelectDeckPresenter : IUseCasePresenter<ListCardSetsUseCaseOutput>
 {
-	public void Present(ListDecksUseCaseOutput output)
+	public void Present(ListCardSetsUseCaseOutput output)
 	{
-		output.SelectedDeck = output.Decks![new ConsoleSelectOnlyOneItem(
+		output.SelectedCardSet = output.CardSets![new ConsoleSelectOnlyOneItem(
 		  "Please pick a deck among following :",
-		  output.Decks.Select(item => item.Description!).ToList()
+		  output.CardSets.Select(item => item.Description!).ToList()
 		  ).DisplaySelectionScreen()];
 	}
 }

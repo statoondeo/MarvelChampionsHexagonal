@@ -1,13 +1,13 @@
-﻿using MarvelChampionsDomain.Entities.Identities;
+﻿using MarvelChampionsDomain.Entities.Sets;
 
 namespace MarvelChampionsApplication.ListVillainIdentities;
 
 public sealed class ListVillainIdentitiesUseCase : IUseCase
 {
-    private readonly List<IVillainIdentity> Identities;
-    private readonly IUseCasePresenter<ListVillainIdentitiesUseCaseOutput> Presenter;
-    public ListVillainIdentitiesUseCaseOutput? Output { get; private set; }
-    public ListVillainIdentitiesUseCase(List<IVillainIdentity> identities, IUseCasePresenter<ListVillainIdentitiesUseCaseOutput> presenter)
+    private readonly List<CollectibleCardDto> Identities;
+    private readonly IUseCasePresenter<SelectOneAndOnlyOneCardIO> Presenter;
+    public SelectOneAndOnlyOneCardIO? Output { get; private set; }
+    public ListVillainIdentitiesUseCase(List<CollectibleCardDto> identities, IUseCasePresenter<SelectOneAndOnlyOneCardIO> presenter)
     {
         ArgumentNullException.ThrowIfNull(identities);
         ArgumentNullException.ThrowIfNull(presenter);
@@ -16,7 +16,7 @@ public sealed class ListVillainIdentitiesUseCase : IUseCase
     }
     public void Execute()
     {
-        Output = new ListVillainIdentitiesUseCaseOutput() { Identities = Identities };
+        Output = new SelectOneAndOnlyOneCardIO() { Identities = this.Identities };
         Presenter.Present(Output);
     }
 }

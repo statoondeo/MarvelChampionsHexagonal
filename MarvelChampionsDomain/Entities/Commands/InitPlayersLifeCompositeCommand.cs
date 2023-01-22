@@ -8,7 +8,9 @@ public sealed class InitPlayersLifeCompositeCommand : ICommand
 	public void Execute()
 	{
 		List<ICommand> commands = new();
-		ServiceLocator.Instance.Get<IPlayerService>().Players.ToList().ForEach(player => commands.Add(new InitPlayerLifeCommand(player)));
+		ServiceLocator.Instance.Get<IPlayerService>()
+			.Players
+			.ForEach(player => commands.Add(new InitPlayerLifeCommand(player)));
 		new CompositeCommand(commands).Execute();
 	}
 }

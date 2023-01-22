@@ -15,6 +15,7 @@ public sealed class CardBuilder
 	private readonly ClassificationEnum Classification;
 	private ICommand SetupCommand;
 	private ICommand WhenRevealedCommand;
+	private EntityId? Owner;
 	public CardBuilder(EntityId id, EntityId cardSet, string title, TypeEnum type, ClassificationEnum classification)
 	{
 		Id = id;
@@ -49,5 +50,16 @@ public sealed class CardBuilder
 		WhenRevealedCommand = whenRevealedCommand;
 		return this;
 	}
-	public ICard Build() => new Card(Id, CardSet, Title, SubTitle, Type, Location, Classification, SetupCommand, WhenRevealedCommand);
+	public CardBuilder WithOwner(EntityId owner)
+	{
+		ArgumentNullException.ThrowIfNull(owner);
+		Owner = owner;
+		return this;
+	}
+	public ICard Build()
+	{
+		Card card = new Card(Id, CardSet, Title, SubTitle, Type, Location, Classification, SetupCommand, WhenRevealedCommand);
+		if (Owner is not null) card.SetOwner(Owner);
+		return card;
+	}
 }

@@ -1,4 +1,4 @@
-﻿using MarvelChampionsApplication.ListAvailableDecks;
+﻿using MarvelChampionsApplication.ListCardSets;
 using MarvelChampionsApplication.ListHeroIdentities;
 using MarvelChampionsApplication.ListVillainIdentities;
 using MarvelChampionsApplication.RegisterPlayer;
@@ -11,7 +11,7 @@ public sealed class CreateAndStartNewGameUseCaseInput
 {
 	public IUseCasePresenter<RegisterPlayerUseCaseInput>? RegisterPlayerPresenter { get; set; }
 	public IUseCasePresenter<ListHeroIdentitiesUseCaseOutput>? SelectPlayerIdentityPresenter { get; set; }
-	public IUseCasePresenter<ListVillainIdentitiesUseCaseOutput>? SelectVillainIdentityPresenter { get; set; }
-	public IUseCasePresenter<ListDecksUseCaseOutput>? SelectDeckPresenter { get; set; }
+	public IUseCasePresenter<SelectOneAndOnlyOneCardIO>? SelectVillainIdentityPresenter { get; set; }
+	public IUseCasePresenter<ListCardSetsUseCaseOutput>? SelectDeckPresenter { get; set; }
     public IChooseCardStrategy? SelectCardStrategy { get; set; }
 }

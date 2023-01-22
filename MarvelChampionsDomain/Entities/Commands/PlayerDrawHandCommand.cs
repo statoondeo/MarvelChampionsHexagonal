@@ -1,4 +1,8 @@
-﻿using MarvelChampionsDomain.Entities.Players;
+﻿using MarvelChampionsDomain.Entities.Cards;
+using MarvelChampionsDomain.Entities.Identities;
+using MarvelChampionsDomain.Entities.Players;
+using MarvelChampionsDomain.Enums;
+using MarvelChampionsDomain.Tools;
 
 namespace MarvelChampionsDomain.Entities.Commands;
 
@@ -8,9 +12,10 @@ public sealed class PlayerDrawHandCommand : ICommand
 	public PlayerDrawHandCommand(IPlayer player) => Player = player;
 	public void Execute()
 	{
-		//int handContentSize = ServiceLocator.Instance.Get<ICardService>()
-		//	.GetCards(card => card.Owner!.Equals(Player) && card.Location.Equals(LocationEnum.Hand)).Count;
-		//new CompositeCommand(Enumerable.Repeat(new PlayerDrawCardCommand(Player), Player.Identity!.HandSize - handContentSize).ToList<ICommand>())
-		//	.Execute();
+		IHeroIdentity identity = ServiceLocator.Instance.Get<IHeroIdentityRepository>().GetById(Player.Identity!);
+		int handContentSize = ServiceLocator.Instance.Get<ICardService>()
+			.GetCards(card => card.Owner!.Equals(Player.Id) && card.Location.Equals(LocationEnum.Hand)).Count;
+		new CompositeCommand(Enumerable.Repeat(new PlayerDrawCardCommand(Player), identity.HandSize - handContentSize).ToList<ICommand>())
+			.Execute();
 	}
 }

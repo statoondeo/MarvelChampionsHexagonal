@@ -12,6 +12,7 @@ public interface IHeroIdentity : IIdentity
 {
 	EntityId NemesisCardSetId { get; }
 	EntityId Card { get; }
+	int HandSize { get; }
 }
 public interface IVillainIdentity : IIdentity
 {

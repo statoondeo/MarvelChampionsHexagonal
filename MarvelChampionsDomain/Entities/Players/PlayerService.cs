@@ -6,11 +6,11 @@ namespace MarvelChampionsDomain.Entities.Players;
 
 public sealed class PlayerService : IPlayerService
 {
-	private readonly ISet<IHeroPlayer> PlayersAtlas;
+	private readonly List<IHeroPlayer> PlayersAtlas;
 	private int FirstPlayerIndex;
-	public IReadOnlyList<IHeroPlayer> Players => PlayersAtlas.ToList().AsReadOnly();
+	public List<IHeroPlayer> Players => PlayersAtlas;
 	public IHeroPlayer First => PlayersAtlas.Skip(FirstPlayerIndex % PlayersAtlas.Count).First();
-	public PlayerService() => PlayersAtlas = new HashSet<IHeroPlayer>();
+	public PlayerService() => PlayersAtlas = new List<IHeroPlayer>();
 	public void NextPlayerSetToFirst()
 	{
 		FirstPlayerIndex = (FirstPlayerIndex + 1) % PlayersAtlas.Count;

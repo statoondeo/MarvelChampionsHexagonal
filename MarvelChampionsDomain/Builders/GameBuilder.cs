@@ -10,32 +10,24 @@ public sealed class GameBuilder
 {
 	private ICommand? SetupCommand;
 	private readonly IRegisterPlayerStrategy RegisterPlayerStrategy;
-	private readonly ISelectPlayerIdentityStrategy SelectPlayerIdentityStrategy;
-	private readonly ISelectVillainIdentityStrategy SelectVillainIdentityStrategy;
-	private readonly ISelectPlayerDeckStrategy SelectPlayerDeckStrategy;
-	private readonly ISelectVillainDeckStrategy SelectVillainDeckStrategy;
+	private readonly ISelectOneAndOnlyOneCard SelectVillainIdentityStrategy;
+	private readonly ISelectCardSetStrategy SelectOneAndOnlyOneCard;
 	private readonly IChooseCardStrategy SelectCardStrategy;
 
 	public GameBuilder(
 		IRegisterPlayerStrategy registerPlayerStrategy,
-		ISelectPlayerIdentityStrategy selectPlayerIdentityStrategy,
-		ISelectVillainIdentityStrategy selectVillainIdentityStrategy,
-		ISelectPlayerDeckStrategy selectPlayerDeckStrategy,
-		ISelectVillainDeckStrategy selectVillainDeckStrategy,
+		ISelectOneAndOnlyOneCard selectOneAndOnlyOneCard,
+		ISelectCardSetStrategy selectPlayerDeckStrategy,
 		IChooseCardStrategy selectCardStrategy)
 	{
 		ArgumentNullException.ThrowIfNull(registerPlayerStrategy);
-		ArgumentNullException.ThrowIfNull(selectPlayerIdentityStrategy);
-		ArgumentNullException.ThrowIfNull(selectVillainIdentityStrategy);
+		ArgumentNullException.ThrowIfNull(selectOneAndOnlyOneCard);
 		ArgumentNullException.ThrowIfNull(selectPlayerDeckStrategy);
-		ArgumentNullException.ThrowIfNull(selectVillainDeckStrategy);
 		ArgumentNullException.ThrowIfNull(selectCardStrategy);
 
 		RegisterPlayerStrategy = registerPlayerStrategy;
-		SelectPlayerIdentityStrategy = selectPlayerIdentityStrategy;
-		SelectVillainIdentityStrategy = selectVillainIdentityStrategy;
-		SelectPlayerDeckStrategy = selectPlayerDeckStrategy;
-		SelectVillainDeckStrategy = selectVillainDeckStrategy;
+		SelectVillainIdentityStrategy = selectOneAndOnlyOneCard;
+		SelectOneAndOnlyOneCard = selectPlayerDeckStrategy;
 		SelectCardStrategy = selectCardStrategy;
 	}
 	public GameBuilder WithSetupCommand(ICommand setupCommand)
@@ -45,9 +37,7 @@ public sealed class GameBuilder
 	}
 	public Game Build() => new(SetupCommand!, 
 									RegisterPlayerStrategy, 
-									SelectPlayerIdentityStrategy, 
-									SelectPlayerDeckStrategy,
+									SelectOneAndOnlyOneCard,
 									SelectVillainIdentityStrategy,
-									SelectVillainDeckStrategy,
 									SelectCardStrategy);
 }

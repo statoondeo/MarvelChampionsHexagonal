@@ -9,7 +9,8 @@ public sealed class SetAsidePlayerObligationsCompositeCommand : ICommand
 	public void Execute()
 	{
 		CompositeCommandBuilder builder = new();
-		ServiceLocator.Instance.Get<IPlayerService>().Players.ToList()
+		ServiceLocator.Instance.Get<IPlayerService>()
+			.Players
 			.ForEach(player => builder.WithCommand(new SetAsidePlayerObligationsCommand(player)));
 		builder.Build().Execute();
 	}

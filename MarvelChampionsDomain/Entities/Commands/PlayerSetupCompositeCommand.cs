@@ -9,7 +9,9 @@ public sealed class PlayerSetupCompositeCommand : ICommand
 	public void Execute()
 	{
 		CompositeCommandBuilder builder = new();
-		ServiceLocator.Instance.Get<IPlayerService>().Players.ToList().ForEach(player => builder.WithCommand(new PlayerSetupCommand(player)));
+		ServiceLocator.Instance.Get<IPlayerService>()
+			.Players
+			.ForEach(player => builder.WithCommand(new PlayerSetupCommand(player)));
 		builder.Build().Execute();
 	}
 }

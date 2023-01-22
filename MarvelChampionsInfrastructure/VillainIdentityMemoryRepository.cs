@@ -19,8 +19,8 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 				RhinoDeckDtoFactory.StandardIdentitySet,
 				RhinoDeckDtoFactory.SchemeCardSetId,
 				StandardDeckDtoFactory.CardSetId,
-				"Rhino Standard",
-				14));
+				RhinoDeckDtoFactory.StandardTitle,
+				RhinoDeckDtoFactory.StandardStartingLife));
 		Create(
 			RhinoDeckDtoFactory.ExpertId,
 			new VillainIdentity(
@@ -29,8 +29,8 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 				RhinoDeckDtoFactory.ExpertIdentitySet,
 				RhinoDeckDtoFactory.SchemeCardSetId,
 				ExpertDeckDtoFactory.CardSetId,
-				"Rhino Expert",
-				15));
+				RhinoDeckDtoFactory.ExpertTitle,
+				RhinoDeckDtoFactory.ExpertStartingLife));
 		Create(
 			KlawDeckDtoFactory.StandardId,
 			new VillainIdentity(
@@ -39,8 +39,8 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 				KlawDeckDtoFactory.StandardIdentitySet,
 				KlawDeckDtoFactory.SchemeCardSetId,
 				StandardDeckDtoFactory.CardSetId,
-				"Klaw Standard",
-				12));
+				KlawDeckDtoFactory.StandardTitle,
+				KlawDeckDtoFactory.StandardStartingLife));
 		Create(
 			KlawDeckDtoFactory.ExpertId,
 			new VillainIdentity(
@@ -49,8 +49,8 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 				KlawDeckDtoFactory.ExpertIdentitySet,
 				KlawDeckDtoFactory.SchemeCardSetId,
 				ExpertDeckDtoFactory.CardSetId,
-				"Klaw Expert",
-				18));
+				KlawDeckDtoFactory.ExpertTitle,
+				KlawDeckDtoFactory.ExpertStartingLife));
 		Create(
 			UltronDeckDtoFactory.StandardId,
 			new VillainIdentity(
@@ -59,8 +59,8 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 				UltronDeckDtoFactory.StandardIdentitySet,
 				UltronDeckDtoFactory.SchemeCardSetId,
 				StandardDeckDtoFactory.CardSetId,
-				"Ultron Standard",
-				17));
+				UltronDeckDtoFactory.StandardTitle,
+				UltronDeckDtoFactory.StandardStartingLife));
 		Create(
 			UltronDeckDtoFactory.ExpertId,
 			new VillainIdentity(
@@ -69,7 +69,7 @@ public sealed class VillainIdentityMemoryRepository : BaseMemoryRepository<Entit
 				UltronDeckDtoFactory.ExpertIdentitySet,
 				UltronDeckDtoFactory.SchemeCardSetId,
 				ExpertDeckDtoFactory.CardSetId,
-				"Ultron Expert",
-				22));
+				UltronDeckDtoFactory.ExpertTitle,
+				UltronDeckDtoFactory.ExpertStartingLife));
 	}
 }

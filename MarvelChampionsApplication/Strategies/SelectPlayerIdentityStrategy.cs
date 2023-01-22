@@ -1,5 +1,4 @@
 ﻿using MarvelChampionsApplication.ListHeroIdentities;
-using MarvelChampionsApplication.SelectPlayerIdentity;
 
 using MarvelChampionsDomain.Entities.Identities;
 using MarvelChampionsDomain.Entities.Players;
@@ -15,17 +14,12 @@ public sealed class SelectPlayerIdentityStrategy : ISelectPlayerIdentityStrategy
 		ArgumentNullException.ThrowIfNull(presenter);
 		Presenter = presenter;
 	}
-	public void SelectIdentityForPlayer(IHeroPlayer player, List<IHeroIdentity> identities)
+	public IHeroIdentity SelectIdentityForPlayer(IHeroPlayer player, List<IHeroIdentity> identities)
 	{
 		// Affichage des identités pour sélection
-		ListHeroIdentitiesUseCase listAvailableIdentitiesUseCase = new(identities, Presenter);
-		listAvailableIdentitiesUseCase.Execute();
+		ListHeroIdentitiesUseCase listIdentitiesUseCase = new(identities, Presenter);
+		listIdentitiesUseCase.Execute();
 
-		// On associe l'identité sélectionnée au joueur
-		new SelectPlayerIdentityUseCase(new()
-		{
-			Player = player,
-			Identity = listAvailableIdentitiesUseCase.Output!.SelectedIdentity
-		}).Execute();
+		return listIdentitiesUseCase.Output!.SelectedIdentity!;
 	}
 }

@@ -5,5 +5,5 @@ namespace MarvelChampionsDomain.Strategies;
 
 public interface ISelectPlayerIdentityStrategy
 {
-	void SelectIdentityForPlayer(IHeroPlayer player, List<IHeroIdentity> identities);
+	IHeroIdentity SelectIdentityForPlayer(IHeroPlayer player, List<IHeroIdentity> identities);
 }

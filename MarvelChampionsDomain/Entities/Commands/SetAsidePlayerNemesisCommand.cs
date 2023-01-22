@@ -12,7 +12,7 @@ public sealed class SetAsidePlayerNemesisCommand : ICommand
 	public void Execute()
 	{
 		ServiceLocator.Instance.Get<ICardService>()
-			.GetCards(card => card.Owner!.Equals(Player) && card.Classification.Equals(ClassificationEnum.Nemesis))
+			.GetCards(card => card.Owner!.Equals(Player.Id) && card.Classification.Equals(ClassificationEnum.Nemesis))
 			.ForEach(card => card.SetLocation(LocationEnum.Exil));
 	}
 }

@@ -27,7 +27,7 @@ public sealed class RegisterPlayerStrategy : IRegisterPlayerStrategy
 			}).Execute();
 			output = new RegisterPlayerUseCaseInput
 			{
-				Players = ServiceLocator.Instance.Get<IPlayerService>().Players.ToList()
+				Players = ServiceLocator.Instance.Get<IPlayerService>().Players
 			};
 			Presenter.Present(output);
 		}

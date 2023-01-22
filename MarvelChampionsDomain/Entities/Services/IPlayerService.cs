@@ -5,7 +5,7 @@ namespace MarvelChampionsDomain.Entities.Services;
 
 public interface IPlayerService : IService
 {
-    IReadOnlyList<IHeroPlayer> Players { get; }
+    List<IHeroPlayer> Players { get; }
 	IHeroPlayer First { get; }
 	IHeroPlayer Register(IHeroPlayer player);
     void SetFirst(int playerIndex);

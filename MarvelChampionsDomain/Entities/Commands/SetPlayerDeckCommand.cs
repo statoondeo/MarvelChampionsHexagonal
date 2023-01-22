@@ -14,34 +14,31 @@ public sealed class SetPlayerDeckCommand : ICommand
 	public void Execute()
 	{
 		// Sélection du deck du joueur
-		ServiceLocator.Instance.Get<IGameService>()
-			.SelectPlayerDeckStrategy
-			.SelectDeckForPlayer(
-				Player,
+		ICardSet selectedDeck = ServiceLocator.Instance.Get<IGameService>()
+			.SelectCardSetStrategy
+			.SelectCardSet(
 				ServiceLocator.Instance.Get<ICardSetRepository>()
 					.GetAll()
 					.Where(cardSet => !cardSet.Identity && !cardSet.Encounter && !cardSet.Standard)
 					.ToList());
 
-		List<CollectibleCardDto> deck = new();
-		
-		// Ajout des cartes du deck
-		deck.AddRange(ServiceLocator.Instance.Get<ICardSetRepository>().GetById(Player.DeckCardSetId!).Cards);
-
 		// Conversion en cartes jouables
 		List<ICard> cards = new();
-		deck.ForEach(collectibleCard =>
-		{
-			CardBuilder cardBuilder = new CardBuilder(
-				collectibleCard.Id!,
-				collectibleCard.CardSet!,
-				collectibleCard.Title!,
-				collectibleCard.Type!,
-				ClassificationEnum.None);
-			ICard card = cardBuilder.Build();
-			card.SetOwner(Player.Id);
-			cards.Add(card);
-		});
+		ServiceLocator.Instance.Get<ICardSetRepository>()
+			.GetById(selectedDeck.Id)
+			.Cards
+			.ForEach(collectibleCard =>
+			{
+				CardBuilder cardBuilder = new(
+					collectibleCard.Id!,
+					collectibleCard.CardSet!,
+					collectibleCard.Title!,
+					collectibleCard.Type!,
+					collectibleCard.Classification!);
+				cardBuilder.WithLocation(LocationEnum.Deck);
+				cardBuilder.WithOwner(Player.Id);
+				cards.Add(cardBuilder.Build());
+			});
 
 		// Ajout des cartes au service
 		ServiceLocator.Instance.Get<ICardService>().RegisterRange(cards);

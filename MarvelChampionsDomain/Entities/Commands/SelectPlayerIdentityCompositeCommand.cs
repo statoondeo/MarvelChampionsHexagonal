@@ -9,7 +9,8 @@ public sealed class SelectPlayerIdentityCompositeCommand : ICommand
 	public void Execute()
 	{
 		CompositeCommandBuilder builder = new();
-		ServiceLocator.Instance.Get<IPlayerService>().Players.ToList()
+		ServiceLocator.Instance.Get<IPlayerService>()
+			.Players
 			.ForEach(player => builder.WithCommand(new SelectPlayerIdentityCommand(player)));
 		builder.Build().Execute();
 	}

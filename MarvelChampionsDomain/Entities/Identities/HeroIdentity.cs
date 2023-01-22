@@ -10,7 +10,8 @@ public sealed class HeroIdentity : BaseEntity, IHeroIdentity
 	public string Title { get; }
 	public int StartingLife { get; }
     public EntityId Card { get; set; }
-    public HeroIdentity(EntityId id, EntityId cardSetId, EntityId nemesisCardSetId, EntityId card, string title, int startingLife) 
+	public int HandSize { get; }
+	public HeroIdentity(EntityId id, EntityId cardSetId, EntityId nemesisCardSetId, EntityId card, string title, int startingLife, int handSize) 
 		: base(id)
     {
 		ArgumentNullException.ThrowIfNull(cardSetId);
@@ -24,6 +25,7 @@ public sealed class HeroIdentity : BaseEntity, IHeroIdentity
 		Card = card;
 		Title = title;
         StartingLife = startingLife;
-    }
+		HandSize = handSize;
+	}
     public override string ToString() => $"Hero[{Title}, {StartingLife}]";
 }
